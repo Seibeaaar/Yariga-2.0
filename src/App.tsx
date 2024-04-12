@@ -1,9 +1,6 @@
-function App() {
-  return (
-    <>
-      Yariga
-    </>
-  )
-}
+import { Provider } from "react-redux";
+import store from "./redux";
 
-export default App
+const App = () => <Provider store={store}>Yariga</Provider>;
+
+export default App;
