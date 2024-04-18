@@ -5,12 +5,18 @@ type ProfileInitialState = {
   authPending: boolean;
   authError: string | null;
   profile: Profile | null;
+  emailVerificationPending: boolean;
+  emailVerificationError: null;
+  emailVerificationSuccessful: boolean;
 };
 
 const initialState: ProfileInitialState = {
   authPending: false,
   authError: null,
   profile: null,
+  emailVerificationError: null,
+  emailVerificationPending: false,
+  emailVerificationSuccessful: false
 };
 
 export const profileSlice = createSlice({
@@ -26,9 +32,25 @@ export const profileSlice = createSlice({
     setProfile: (state, { payload }) => {
       state.profile = payload;
     },
+    emailVerificationPending: (state, { payload }) => {
+      state.emailVerificationPending = payload;
+    },
+    emailVerificationError: (state, { payload }) => {
+      state.emailVerificationError = payload;
+    },
+    emailVerificationSuccessful: (state, { payload }) => {
+      state.emailVerificationSuccessful = payload;
+    }
   },
 });
 
-export const { authPending, authError, setProfile } = profileSlice.actions;
+export const {
+  authPending,
+  authError,
+  setProfile,
+  emailVerificationError,
+  emailVerificationPending,
+  emailVerificationSuccessful
+} = profileSlice.actions;
 
 export default profileSlice.reducer;

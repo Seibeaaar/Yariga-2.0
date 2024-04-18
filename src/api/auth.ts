@@ -1,5 +1,6 @@
 import instance from ".";
 import { LoginData, SignUpData, AuthRequestResponse } from "@/types/auth";
+import { Profile } from "@/types/profile";
 
 export const loginRequest = async (
   data: LoginData,
@@ -14,3 +15,10 @@ export const signUpRequest = async (
   const result = await instance.post("/auth/signUp", data);
   return result.data;
 };
+
+export const emailVerificationRequest = async (
+  id: string
+): Promise<Profile> => {
+  const result = await instance.post(`/verification/email/${id}`);
+  return result.data;
+}
