@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, FC, useMemo } from "react";
+import { InputHTMLAttributes, FC, useState } from "react";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
@@ -6,21 +6,33 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 const Input: FC<InputProps> = (props) => {
-  const borderStyle = useMemo(() => {
-    if (props.error) {
-      return "border-danger";
+  const [focused, setFocused] = useState<boolean>(false);
+
+  const calculateBorderStyle = () => {
+    switch (true) {
+      case !!props.error:
+        return "border-danger";
+      case !!focused:
+        return "border-primary";
+      default:
+        return "border-border-light dark:border-border-dark";
     }
-    return "border-border-light dark:border-border-dark";
-  }, [props.error]);
+  };
+
+  const focus = () => setFocused(true);
+  const blur = () => setFocused(false);
+
   return (
     <div className="mt-[15px] w-full">
       <p className="text-sm font-medium mb-[4px]">{props.label}</p>
       <div
-        className={`py-[10px] px-[12px] border ${borderStyle} rounded-[8px]`}
+        className={`py-[10px] px-[12px] border ${calculateBorderStyle()} rounded-[8px]`}
       >
         <input
           className="dark:[color-scheme:dark] bg-transparent w-full outline-none border-none"
           {...props}
+          onFocus={focus}
+          onBlur={blur}
         />
       </div>
       {props.error ? (
