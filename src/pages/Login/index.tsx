@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
+import { motion } from "framer-motion";
 
 import SkyScraperImage from "@/assets/images/Skyscraper.webp";
 import LoginForm from "./components/LoginForm";
@@ -14,12 +15,24 @@ const LoginScreen = () => {
       {authPending ? <Loader /> : null}
       <section className="h-full md:w-1/2 w-full px-[24px] xl:p-0 flex items-center justify-center">
         <div className="2xl:w-1/2 xl:w-2/3 w-full">
-          <h1 className="text-center md:text-left font-bold text-4xl">
-            Welcome back
-          </h1>
-          <h4 className="text-center md:text-left text-base leading-6 text-secondary-light dark:text-secondary-dark">
-            Welcome back to Yariga! Please enter your details.
-          </h4>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: -100,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{ ease: "easeOut", duration: 1 }}
+          >
+            <h1 className="text-center md:text-left font-bold text-4xl">
+              Welcome back
+            </h1>
+            <h4 className="text-center md:text-left text-base leading-6 text-secondary-light dark:text-secondary-dark">
+              Welcome back to Yariga! Please enter your details.
+            </h4>
+          </motion.div>
           <LoginForm />
           <AuthRedirect
             to="/sign-up"

@@ -4,6 +4,7 @@ import { authPending, authError, setProfile } from "../reducers/profile";
 import { LoginData, SignUpData } from "@/types/auth";
 import { AuthRequestResponse } from "@/types/auth";
 import { LOGIN_REQUEST, SIGN_UP_REQUEST } from "../actions/profile";
+import router from "@/router";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 function* loginSaga(
@@ -31,6 +32,7 @@ function* signUpSaga(
     const { profile, token } = yield call(signUpRequest, payload);
     yield put(setProfile(profile));
     localStorage.setItem("token", token);
+    router.navigate('/email-sent');
   } catch (e) {
     yield put(authError(e));
   } finally {

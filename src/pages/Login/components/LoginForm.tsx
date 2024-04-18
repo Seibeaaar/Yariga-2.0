@@ -1,5 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { motion } from "framer-motion";
 
 import { useDispatch } from "react-redux";
 import { login } from "@/redux/actions/profile";
@@ -27,7 +28,17 @@ const LoginForm = () => {
   const onLogin = (data: LoginData) => dispatch(login(data));
 
   return (
-    <form onSubmit={handleSubmit(onLogin)} className="mt-[20px]">
+    <motion.form
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      transition={{ ease: "easeOut", duration: 1.5 }}
+      onSubmit={handleSubmit(onLogin)}
+      className="mt-[20px]"
+    >
       <Controller
         control={control}
         name="email"
@@ -57,7 +68,7 @@ const LoginForm = () => {
       <div className="my-[20px]">
         <Button type="submit" text="Login" />
       </div>
-    </form>
+    </motion.form>
   );
 };
 

@@ -1,5 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { motion } from "framer-motion";
 
 import { AppDispatch } from "@/redux";
 import { useDispatch } from "react-redux";
@@ -30,7 +31,17 @@ const SignUpForm = () => {
   const onSignUp = (data: SignUpData) => dispatch(signUp(data));
 
   return (
-    <form onSubmit={handleSubmit(onSignUp)} className="mt-[20px]">
+    <motion.form
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      transition={{ ease: "easeOut", duration: 1.5 }}
+      onSubmit={handleSubmit(onSignUp)}
+      className="mt-[20px]"
+    >
       <div className="md:flex items-center gap-[8px]">
         <Controller
           control={control}
@@ -86,7 +97,7 @@ const SignUpForm = () => {
       <div className="my-[20px]">
         <Button type="submit" text="Sign Up" />
       </div>
-    </form>
+    </motion.form>
   );
 };
 
