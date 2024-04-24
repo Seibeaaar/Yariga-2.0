@@ -11,7 +11,7 @@ import { PROFILE_COMPLETE_SCHEMA } from "@/schemas/auth";
 import { USER_ROLE } from "@/types/profile";
 import { ProfileCompletionRequest } from "@/types/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { completeProfile } from "@/redux/actions/profile";
+import { completeProfile } from "@/redux/actions/auth";
 import { AppDispatch, RootState } from "@/redux";
 import Loader from "@/components/Loader";
 import { useEffect } from "react";
@@ -38,7 +38,7 @@ const ProfileCompletionForm = () => {
   });
 
   const { profileCompletePending } = useSelector(
-    (state: RootState) => state.profile,
+    (state: RootState) => state.auth,
   );
   const dispatch = useDispatch<AppDispatch>();
 

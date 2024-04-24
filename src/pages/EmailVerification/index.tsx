@@ -6,7 +6,7 @@ import Loader from "@/components/Loader";
 import EmailVerificationSuccess from "./components/VerificationSuccess";
 import EmailVerificationError from "./components/VerificationError";
 import VerificationBrokenLink from "./components/VerificationBrokenLink";
-import { verifyEmail } from "@/redux/actions/profile";
+import { verifyEmail } from "@/redux/actions/auth";
 import { useCallback, useEffect, useState } from "react";
 
 const EmailVerificationScreen = () => {
@@ -19,7 +19,7 @@ const EmailVerificationScreen = () => {
     emailVerificationSuccessful,
     emailVerificationError,
     emailVerificationPending,
-  } = useSelector((state: RootState) => state.profile);
+  } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     if (!requestId || emailVerificationSuccessful) {

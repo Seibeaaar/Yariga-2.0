@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import { AppDispatch } from "@/redux";
 import { useDispatch } from "react-redux";
-import { signUp } from "@/redux/actions/profile";
+import { signUp } from "@/redux/actions/auth";
 
 import { SIGN_UP_SCHEMA } from "@/schemas/auth";
 import Input from "@/components/Input";

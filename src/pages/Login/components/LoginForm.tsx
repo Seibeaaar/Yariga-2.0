@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
 
 import { useDispatch } from "react-redux";
-import { login } from "@/redux/actions/profile";
+import { login } from "@/redux/actions/auth";
 import { AppDispatch } from "@/redux";
 
 import { LOGIN_SCHEMA } from "@/schemas/auth";

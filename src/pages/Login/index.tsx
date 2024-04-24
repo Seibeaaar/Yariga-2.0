@@ -9,7 +9,7 @@ import Loader from "@/components/Loader";
 import ScreenBackground from "@/components/Background";
 
 const LoginScreen = () => {
-  const { authPending } = useSelector((state: RootState) => state.profile);
+  const { authPending } = useSelector((state: RootState) => state.auth);
   return (
     <ScreenBackground className="flex">
       {authPending ? <Loader /> : null}
