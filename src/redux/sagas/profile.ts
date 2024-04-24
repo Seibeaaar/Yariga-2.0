@@ -9,17 +9,20 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { Profile } from "@/types/profile";
 import { uploadProfilePictureRequest } from "@/api/profile";
 
+import { generateErrorMesaage } from "@/utils/redux";
+
 function* loginSaga(
   action: PayloadAction<LoginData>,
 ): Generator<unknown, void, AuthRequestResponse> {
   try {
+    yield put(authError(null));
     yield put(authPending(true));
     const { payload } = action;
     const { profile, token } = yield call(loginRequest, payload);
     yield put(setProfile(profile));
     localStorage.setItem("token", token);
   } catch (e) {
-    yield put(authError(e));
+    yield put(authError(generateErrorMesaage(e)));
   } finally {
     yield put(authPending(false));
   }
@@ -29,6 +32,7 @@ function* signUpSaga(
   action: PayloadAction<SignUpData>
 ): Generator<unknown, void, AuthRequestResponse> {
   try {
+    yield put(authError(null));
     yield put(authPending(true));
     const { payload } = action;
     const { profile, token } = yield call(signUpRequest, payload);
@@ -36,7 +40,7 @@ function* signUpSaga(
     localStorage.setItem("token", token);
     router.navigate('/email-sent');
   } catch (e) {
-    yield put(authError(e));
+    yield put(authError(generateErrorMesaage(e)));
   } finally {
     yield put(authPending(false));
   }
@@ -46,11 +50,12 @@ function* emailVerificationSaga(
   action: PayloadAction<string>
 ): Generator<unknown, void, Profile> {
   try {
+    yield put(emailVerificationError(null));
     yield put(emailVerificationPending(true));
     const profile = yield call(emailVerificationRequest, action.payload);
     yield put(setProfile(profile));
   } catch (e) {
-    yield put (emailVerificationError(e))
+    yield put (emailVerificationError(generateErrorMesaage(e)))
   } finally {
     yield put(emailVerificationPending(false))
   }
@@ -60,11 +65,12 @@ function* profileCompleteSaga(
   action: PayloadAction<ProfileCompletionRequest>
 ): Generator<unknown, void, Profile> {
   try {
+    yield put(profileCompleteError(null));
     yield put(profileCompletePending(true))
     const profile = yield call(completeProfileRequest, action.payload)
     yield put(setProfile(profile));
   } catch (e) {
-    yield put(profileCompleteError(e))
+    yield put(profileCompleteError(generateErrorMesaage(e)))
   } finally {
     yield put(profileCompletePending(false));
   }
@@ -79,7 +85,7 @@ function* profilePictureSaga(
     const profile = yield call(uploadProfilePictureRequest, action.payload)
     yield put(setProfile(profile));
   } catch (e) {
-    yield put(profilePictureError(e))
+    yield put(profilePictureError(generateErrorMesaage(e)))
   } finally {
     yield put(profilePicturePending(false));
   }
