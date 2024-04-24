@@ -20,7 +20,3 @@ export type ProfileCompletionRequest = {
   taxNumber?: string;
   dateOfBirth: string;
 };
-
-export type PhoneVerificationRequest = {
-  phoneNumber: string;
-};

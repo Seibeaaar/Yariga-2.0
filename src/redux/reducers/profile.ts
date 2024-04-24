@@ -6,8 +6,10 @@ type ProfileInitialState = {
   authError: string | null;
   profile: Profile | null;
   emailVerificationPending: boolean;
-  emailVerificationError: null;
+  emailVerificationError: string | null;
   emailVerificationSuccessful: boolean;
+  profileCompletePending: boolean;
+  profileCompleteError: string | null;
 };
 
 const initialState: ProfileInitialState = {
@@ -16,7 +18,9 @@ const initialState: ProfileInitialState = {
   profile: null,
   emailVerificationError: null,
   emailVerificationPending: false,
-  emailVerificationSuccessful: false
+  emailVerificationSuccessful: false,
+  profileCompletePending: false,
+  profileCompleteError: null
 };
 
 export const profileSlice = createSlice({
@@ -40,6 +44,12 @@ export const profileSlice = createSlice({
     },
     emailVerificationSuccessful: (state, { payload }) => {
       state.emailVerificationSuccessful = payload;
+    },
+    profileCompletePending: (state, { payload }) => {
+      state.profileCompletePending = payload
+    },
+    profileCompleteError: (state, { payload }) => {
+      state.profileCompleteError = payload;
     }
   },
 });
@@ -50,7 +60,9 @@ export const {
   setProfile,
   emailVerificationError,
   emailVerificationPending,
-  emailVerificationSuccessful
+  emailVerificationSuccessful,
+  profileCompleteError,
+  profileCompletePending
 } = profileSlice.actions;
 
 export default profileSlice.reducer;

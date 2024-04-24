@@ -3,6 +3,7 @@ import LoginScreen from "@/pages/Login";
 import SignUpScreen from "@/pages/SignUp";
 import EmailSentScreen from "@/pages/EmailSent";
 import EmailVerificationScreen from "@/pages/EmailVerification";
+import ProfileCompleteScreen from "@/pages/ProfileComplete";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/email-verification',
     element: <EmailVerificationScreen />
+  },
+  {
+    path: '/complete-profile',
+    element: <ProfileCompleteScreen />
   }
 ]);
 
