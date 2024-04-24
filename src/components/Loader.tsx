@@ -6,7 +6,7 @@ type LoaderProps = {
 };
 
 const Loader: FC<LoaderProps> = ({ transparent = true }) => (
-  <section className="absolute w-screen h-screen flex justify-center items-center">
+  <section className="absolute z-[1000] w-screen h-screen flex justify-center items-center">
     <div
       className={`w-full h-full ${
         transparent ? "opacity-70" : ""

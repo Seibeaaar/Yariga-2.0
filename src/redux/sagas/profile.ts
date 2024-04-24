@@ -1,6 +1,6 @@
 import { completeProfileRequest, emailVerificationRequest, loginRequest, signUpRequest } from "@/api/auth";
 import { takeLatest, put, call } from "redux-saga/effects";
-import { authPending, authError, setProfile, emailVerificationPending, emailVerificationError, profileCompletePending, profileCompleteError } from "../reducers/profile";
+import { authPending, authError, setProfile, emailVerificationPending, emailVerificationError, profileCompletePending, profileCompleteError, profilePicturePending, profilePictureError } from "../reducers/profile";
 import { LoginData, ProfileCompletionRequest, SignUpData } from "@/types/auth";
 import { AuthRequestResponse } from "@/types/auth";
 import { COMPLETE_PROFILE, LOGIN_REQUEST, SIGN_UP_REQUEST, UPLOAD_PROFILE_PICTURE, VERIFY_EMAIL_REQUEST } from "../actions/profile";
@@ -74,13 +74,14 @@ function* profilePictureSaga(
   action: PayloadAction<FormData>
 ): Generator<unknown, void, Profile> {
   try {
-    yield put(profileCompletePending(true))
+    yield put(profilePictureError(null))
+    yield put(profilePicturePending(true))
     const profile = yield call(uploadProfilePictureRequest, action.payload)
     yield put(setProfile(profile));
   } catch (e) {
-    yield put(profileCompleteError(e))
+    yield put(profilePictureError(e))
   } finally {
-    yield put(profileCompletePending(false));
+    yield put(profilePicturePending(false));
   }
 }
 
