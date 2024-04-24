@@ -1,4 +1,5 @@
 import { Controller, Resolver, useForm, useWatch } from "react-hook-form";
+import { motion } from "framer-motion";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "@/components/Button";
 import { ONBOARDING_ROLE_OPTIONS } from "@/constants/profile";
@@ -13,12 +14,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { completeProfile } from "@/redux/actions/profile";
 import { AppDispatch, RootState } from "@/redux";
 import Loader from "@/components/Loader";
+import { useEffect } from "react";
 
 const ProfileCompletionForm = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm<ProfileCompletionRequest>({
     defaultValues: {
       dateOfBirth: "",
@@ -28,12 +31,15 @@ const ProfileCompletionForm = () => {
       PROFILE_COMPLETE_SCHEMA,
     ) as Resolver<ProfileCompletionRequest>,
   });
+
   const roleValue = useWatch({
     control,
     name: "role",
   });
 
-  const { profileCompletePending } = useSelector((state: RootState) => state.profile);
+  const { profileCompletePending } = useSelector(
+    (state: RootState) => state.profile,
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = (data: ProfileCompletionRequest) => {
@@ -43,12 +49,30 @@ const ProfileCompletionForm = () => {
     dispatch(completeProfile(data));
   };
 
+  const isTenant = roleValue === USER_ROLE.Tenant;
+
+  useEffect(() => {
+    if (isTenant) {
+      setValue('taxNumber', '')
+    }
+  }, [roleValue, setValue]);
+
   return (
     <>
       {profileCompletePending ? <Loader /> : null}
       <section className="lg:w-1/2 md:w-2/3 w-full px-[24px] md:px-0 h-full flex items-center justify-center">
         <form onSubmit={handleSubmit(onSubmit)} className="sm:w-2/3 w-full">
-          <div>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: -100,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{ ease: "easeOut", duration: 1 }}
+          >
             <p className="text-xl font-medium mb-[16px]">
               Your main goal in Yariga is:
             </p>
@@ -68,21 +92,32 @@ const ProfileCompletionForm = () => {
                 </div>
               )}
             />
-          </div>
-          <Controller
-            name="dateOfBirth"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Input
-                onChange={onChange}
-                type="date"
-                value={value}
-                label="Date of birth"
-                error={errors.dateOfBirth?.message}
-              />
-            )}
-          />
-          {roleValue === USER_ROLE.Landlord ? (
+          </motion.div>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 100,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{ ease: "easeOut", duration: 1 }}
+          >
+            <Controller
+              name="dateOfBirth"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChange={onChange}
+                  type="date"
+                  value={value}
+                  label="Date of birth"
+                  error={errors.dateOfBirth?.message}
+                />
+              )}
+            />
+
             <Controller
               name="taxNumber"
               control={control}
@@ -92,18 +127,20 @@ const ProfileCompletionForm = () => {
                     mask="__-_______"
                     component={ForwardedRefInput}
                     replacement={{ _: /\d/ }}
-                    label="Tax ID (United States)"
+                    label={`Tax ID (United States) ${isTenant ? '(Not required)' : ''}`}
                     onChange={onChange}
                     placeholder="Your tax number (EIN)"
                     value={value}
                     error={errors.taxNumber?.message}
                     showMask
+                    disabled={isTenant}
                   />
                 );
               }}
             />
-          ) : null}
-          <Button type="submit" className="mt-[24px]" text="Next" />
+
+            <Button type="submit" className="mt-[24px]" text="Next" />
+          </motion.div>
         </form>
       </section>
     </>
