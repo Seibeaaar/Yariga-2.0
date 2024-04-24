@@ -3,10 +3,11 @@ import { takeLatest, put, call } from "redux-saga/effects";
 import { authPending, authError, setProfile, emailVerificationPending, emailVerificationError, profileCompletePending, profileCompleteError } from "../reducers/profile";
 import { LoginData, ProfileCompletionRequest, SignUpData } from "@/types/auth";
 import { AuthRequestResponse } from "@/types/auth";
-import { COMPLETE_PROFILE, LOGIN_REQUEST, SIGN_UP_REQUEST, VERIFY_EMAIL_REQUEST } from "../actions/profile";
+import { COMPLETE_PROFILE, LOGIN_REQUEST, SIGN_UP_REQUEST, UPLOAD_PROFILE_PICTURE, VERIFY_EMAIL_REQUEST } from "../actions/profile";
 import router from "@/router";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { Profile } from "@/types/profile";
+import { uploadProfilePictureRequest } from "@/api/profile";
 
 function* loginSaga(
   action: PayloadAction<LoginData>,
@@ -69,9 +70,24 @@ function* profileCompleteSaga(
   }
 }
 
+function* profilePictureSaga(
+  action: PayloadAction<FormData>
+): Generator<unknown, void, Profile> {
+  try {
+    yield put(profileCompletePending(true))
+    const profile = yield call(uploadProfilePictureRequest, action.payload)
+    yield put(setProfile(profile));
+  } catch (e) {
+    yield put(profileCompleteError(e))
+  } finally {
+    yield put(profileCompletePending(false));
+  }
+}
+
 export default function* () {
   yield takeLatest(LOGIN_REQUEST, loginSaga)
   yield takeLatest(SIGN_UP_REQUEST, signUpSaga)
   yield takeLatest(VERIFY_EMAIL_REQUEST, emailVerificationSaga)
   yield takeLatest(COMPLETE_PROFILE, profileCompleteSaga)
+  yield takeLatest(UPLOAD_PROFILE_PICTURE, profilePictureSaga)
 }

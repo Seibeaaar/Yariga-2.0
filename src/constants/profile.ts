@@ -20,3 +20,5 @@ export const ONBOARDING_ROLE_OPTIONS: OnboardingRoleOption[] = [
     image: PropertyBuyerIcon,
   },
 ];
+
+export const ACCEPTED_AVATAR_FORMATS = ["png", "jpeg", "jpg", "webp"];

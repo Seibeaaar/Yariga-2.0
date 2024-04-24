@@ -4,6 +4,7 @@ import SignUpScreen from "@/pages/SignUp";
 import EmailSentScreen from "@/pages/EmailSent";
 import EmailVerificationScreen from "@/pages/EmailVerification";
 import ProfileCompleteScreen from "@/pages/ProfileComplete";
+import ProfilePictureScreen from "@/pages/ProfilePicture";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: '/complete-profile',
     element: <ProfileCompleteScreen />
+  },
+  {
+    path: '/upload-profile-picture',
+    element: <ProfilePictureScreen />
   }
 ]);
 
