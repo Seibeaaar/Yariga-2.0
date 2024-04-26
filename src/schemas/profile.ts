@@ -6,7 +6,7 @@ import {
   ROOM_LIMIT,
   BED_LIMIT,
 } from "@/types/property";
-import { PROPERTY_FACILITIES } from "@/constants/property";
+import { PROPERTY_FACILITIES, PROPERTY_TYPES } from "@/constants/property";
 import { AGREEMENT_TYPES } from "@/constants/agreement";
 
 export const CLIENT_PREFERENCES_VALIDATION = yup.object({
@@ -85,4 +85,5 @@ export const CLIENT_PREFERENCES_VALIDATION = yup.object({
 
   facilities: yup.array().ensure().of(yup.string().oneOf(PROPERTY_FACILITIES)),
   agreementType: yup.array().ensure().of(yup.string().oneOf(AGREEMENT_TYPES)),
+  propertyType: yup.array().ensure().of(yup.string().oneOf(PROPERTY_TYPES))
 });

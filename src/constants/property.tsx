@@ -15,27 +15,27 @@ import { PROPERTY_FACILITY, PROPERTY_TYPE } from "@/types/property";
 export const PROPERTY_FACILITIES_OPTIONS = [
   {
     icon: Kitchen,
-    title: "Kitchen",
+    label: "Kitchen",
     value: PROPERTY_FACILITY.Kitchen,
   },
   {
     icon: Balcony,
-    title: "Balcony",
+    label: "Balcony",
     value: PROPERTY_FACILITY.Balcony,
   },
   {
     icon: LocalParking,
-    title: "Parking",
+    label: "Parking",
     value: PROPERTY_FACILITY.Parking,
   },
   {
     icon: Wifi,
-    title: "Wi-Fi",
+    label: "Wi-Fi",
     value: PROPERTY_FACILITY.WiFI,
   },
   {
     icon: SmokingRooms,
-    title: "Smoking",
+    label: "Smoking",
     value: PROPERTY_FACILITY.Smoking,
   },
 ];

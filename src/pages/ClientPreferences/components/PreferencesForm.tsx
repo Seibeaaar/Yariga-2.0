@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   AREA_LIMIT,
@@ -18,6 +18,12 @@ import {
 } from "@mui/icons-material";
 import RangeRow from "./RangeRow";
 import Button from "@/components/Button";
+import {
+  PROPERTY_FACILITIES_OPTIONS,
+  PROPERTY_TYPE_OPTIONS,
+} from "@/constants/property";
+import { AGREEMENT_TYPE_OPTIONS } from "@/constants/agreement";
+import Selectable from "./Selectable";
 
 const ClientPreferencesForm = () => {
   const {
@@ -39,8 +45,14 @@ const ClientPreferencesForm = () => {
       topRoomsNumber: undefined,
       bottomRoomsNumber: undefined,
       agreementType: [],
+      propertyType: [],
     },
     resolver: yupResolver(CLIENT_PREFERENCES_VALIDATION),
+  });
+
+  const [facilities, agreementType, propertyType] = useWatch({
+    control: control,
+    name: ["facilities", "agreementType", "propertyType"],
   });
 
   return (
@@ -101,6 +113,27 @@ const ClientPreferencesForm = () => {
           lowestName="bottomFloorLevel"
         />
       </div>
+      <Selectable
+        options={PROPERTY_TYPE_OPTIONS}
+        control={control}
+        fieldName="propertyType"
+        values={propertyType}
+        title="Select types of property you're interested in"
+      />
+      <Selectable
+        options={AGREEMENT_TYPE_OPTIONS}
+        control={control}
+        fieldName="agreementType"
+        values={agreementType}
+        title="Select types of agreements you're looking for"
+      />
+      <Selectable
+        options={PROPERTY_FACILITIES_OPTIONS}
+        control={control}
+        fieldName="facilities"
+        values={facilities}
+        title="Select facilities you would like to see"
+      />
       <div className="flex items-center">
         <Button
           disabled={Object.values(dirtyFields).every((t) => !t)}
