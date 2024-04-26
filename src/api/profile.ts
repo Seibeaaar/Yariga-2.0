@@ -15,6 +15,6 @@ export const uploadProfilePictureRequest = async (
 export const setClientPreferencesRequest = async (
   preferences: ClientPreferences
 ): Promise<Profile> => {
-  const result = await instance.post('/preferences', preferences);
+  const result = await instance.post('/profile/preferences', preferences);
   return result.data
 };

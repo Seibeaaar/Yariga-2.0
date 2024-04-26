@@ -5,12 +5,16 @@ type ProfileInitialState = {
   profile: Profile | null;
   profilePicturePending: boolean;
   profilePictureError: string | null;
+  setPreferencesPending: boolean;
+  setPreferencesError: string | null;
 };
 
 const initialState: ProfileInitialState = {
   profile: null,
   profilePicturePending: false,
-  profilePictureError: null
+  profilePictureError: null,
+  setPreferencesError: null,
+  setPreferencesPending: false
 };
 
 export const profileSlice = createSlice({
@@ -25,6 +29,12 @@ export const profileSlice = createSlice({
     },
     profilePictureError: (state, { payload }) => {
       state.profilePictureError = payload;
+    },
+    setPreferencesPending: (state, { payload }) => {
+      state.profilePicturePending = payload
+    },
+    setPreferencesError: (state, { payload }) => {
+      state.setPreferencesError = payload;
     }
   },
 });
@@ -32,7 +42,9 @@ export const profileSlice = createSlice({
 export const {
   setProfile,
   profilePictureError,
-  profilePicturePending
+  profilePicturePending,
+  setPreferencesError,
+  setPreferencesPending
 } = profileSlice.actions;
 
 export default profileSlice.reducer;

@@ -3,6 +3,7 @@ import { InputHTMLAttributes, FC, useState } from "react";
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   error?: string;
+  prefix?: React.ReactElement;
 };
 
 const Input: FC<InputProps> = (props) => {
@@ -26,8 +27,9 @@ const Input: FC<InputProps> = (props) => {
     <div className="mt-[15px] w-full">
       <p className="text-sm font-medium mb-[4px]">{props.label}</p>
       <div
-        className={`py-[10px] px-[12px] border ${calculateBorderStyle()} rounded-[8px]`}
+        className={`py-[10px] px-[12px] border flex gap-[8px] ${calculateBorderStyle()} rounded-[8px]`}
       >
+        {props.prefix ?? null}
         <input
           className="dark:[color-scheme:dark] bg-transparent w-full outline-none border-none"
           {...props}
