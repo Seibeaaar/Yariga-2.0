@@ -30,7 +30,11 @@ import Selectable from "./Selectable";
 import { AppDispatch } from "@/redux";
 
 const ClientPreferencesForm = () => {
-  const { control, handleSubmit } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(CLIENT_PREFERENCES_VALIDATION),
   });
   const dispatch = useDispatch<AppDispatch>();
@@ -39,8 +43,10 @@ const ClientPreferencesForm = () => {
     control,
   });
 
-  const isFormDirty = Object.values(formValues).some((v) =>
-    Array.isArray(v) ? v.length > 0 : Boolean(v),
+  const isSubmitDisabled = (
+    Object.values(formValues).every((v) =>
+      Array.isArray(v) ? v.length === 0 : !v,
+    ) || Object.keys(errors).length > 0
   );
 
   const onSubmit = (data: PropertyFilters) => {
@@ -58,6 +64,8 @@ const ClientPreferencesForm = () => {
           control={control}
           highestName="topPrice"
           lowestName="bottomPrice"
+          highestError={errors?.topPrice?.message}
+          lowestError={errors?.bottomPrice?.message}
         />
         <RangeRow
           label="Area"
@@ -67,6 +75,8 @@ const ClientPreferencesForm = () => {
           control={control}
           highestName="topArea"
           lowestName="bottomArea"
+          highestError={errors?.topArea?.message}
+          lowestError={errors?.bottomArea?.message}
         />
         <RangeRow
           label="Number of rooms"
@@ -76,6 +86,8 @@ const ClientPreferencesForm = () => {
           control={control}
           highestName="topRoomsNumber"
           lowestName="bottomRoomsNumber"
+          highestError={errors?.topRoomsNumber?.message}
+          lowestError={errors?.bottomRoomsNumber?.message}
         />
         <RangeRow
           label="Number of beds"
@@ -85,6 +97,8 @@ const ClientPreferencesForm = () => {
           control={control}
           highestName="topBedsNumber"
           lowestName="bottomBedsNumber"
+          highestError={errors?.topBedsNumber?.message}
+          lowestError={errors?.bottomBedsNumber?.message}
         />
         <RangeRow
           label="Number of floors"
@@ -94,6 +108,8 @@ const ClientPreferencesForm = () => {
           control={control}
           highestName="topFloorsNumber"
           lowestName="bottomFloorsNumber"
+          highestError={errors?.topFloorsNumber?.message}
+          lowestError={errors?.bottomFloorsNumber?.message}
         />
         <RangeRow
           label="Floor level"
@@ -103,6 +119,8 @@ const ClientPreferencesForm = () => {
           control={control}
           highestName="topFloorLevel"
           lowestName="bottomFloorLevel"
+          highestError={errors?.topFloorLevel?.message}
+          lowestError={errors?.bottomFloorLevel?.message}
         />
       </div>
       <Selectable
@@ -127,7 +145,7 @@ const ClientPreferencesForm = () => {
         title="Select facilities you would like to see"
       />
       <Button
-        disabled={!isFormDirty}
+        disabled={isSubmitDisabled}
         text="Add your preferences"
         className="mb-[16px]"
         type="submit"

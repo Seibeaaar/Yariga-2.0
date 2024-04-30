@@ -10,6 +10,8 @@ type RangeRowProps = {
   max: number;
   min: number;
   prefix: React.ReactElement;
+  lowestError?: string;
+  highestError?: string;
 };
 
 const RangeRow: FC<RangeRowProps> = ({
@@ -20,6 +22,8 @@ const RangeRow: FC<RangeRowProps> = ({
   max,
   min,
   label,
+  highestError,
+  lowestError,
 }) => {
   return (
     <div className="w-[47.5%] mb-[24px]">
@@ -29,7 +33,7 @@ const RangeRow: FC<RangeRowProps> = ({
           control={control}
           name={lowestName}
           render={({ field: { onChange } }) => (
-            <div className="flex-grow">
+            <div className="w-[45%]">
               <Input
                 placeholder="From"
                 prefix={prefix}
@@ -37,16 +41,17 @@ const RangeRow: FC<RangeRowProps> = ({
                 type="number"
                 max={max}
                 min={min}
+                error={lowestError}
               />
             </div>
           )}
         />
-        <div className="h-[1px] w-[24px] bg-secondary-dark mb-[24px]" />
+        <div className="h-[1px] w-[24px] bg-secondary-dark mb-[40px]" />
         <Controller
           control={control}
           name={highestName}
           render={({ field: { onChange } }) => (
-            <div className="flex-grow">
+            <div className="w-[45%]">
               <Input
                 placeholder="To"
                 prefix={prefix}
@@ -54,6 +59,7 @@ const RangeRow: FC<RangeRowProps> = ({
                 type="number"
                 max={max}
                 min={min}
+                error={highestError}
               />
             </div>
           )}

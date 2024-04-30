@@ -11,7 +11,7 @@ const ClientPreferencesScreen = () => {
   );
   return (
     <>
-      {setPreferencesPending ? <Loader /> : null}
+      <Loader showLoader={setPreferencesPending} />
       <Tooltip 
         showTooltip={!!setPreferencesError}
         severity="error"
@@ -20,7 +20,7 @@ const ClientPreferencesScreen = () => {
         title="Uh-oh."
         content="Something went wrong while setting your preferences."
       />
-      <ScreenBackground className="py-[24px]">
+      <ScreenBackground className="py-[24px] h-fit">
         <h1 className="text-center font-bold text-2xl md:text-3xl mb-[16px]">
           The last step before diving into Yariga is to set your property
           preferences.

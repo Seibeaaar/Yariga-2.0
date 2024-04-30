@@ -13,7 +13,7 @@ const SignUpScreen = () => {
 
   return (
     <ScreenBackground className="flex">
-      {authPending ? <Loader /> : null}
+      <Loader showLoader={authPending} />
       <section className="h-full md:w-1/2 w-full px-[24px] xl:p-0 flex items-center justify-center">
         <div className="2xl:w-1/2 xl:w-2/3 w-full">
           <motion.div

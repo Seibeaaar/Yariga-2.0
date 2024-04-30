@@ -59,16 +59,9 @@ const EmailVerificationScreen = () => {
     }
   };
 
-  const renderLoader = () => {
-    if (!emailVerificationPending) {
-      return null;
-    }
-    return <Loader transparent={retries >= 1} />;
-  };
-
   return (
     <ScreenContainer>
-      {renderLoader()}
+      <Loader showLoader={emailVerificationPending} transparent={retries >= 1} />
       {renderContent()}
     </ScreenContainer>
   );

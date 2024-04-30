@@ -24,7 +24,7 @@ const Input: FC<InputProps> = (props) => {
   const blur = () => setFocused(false);
 
   return (
-    <div className="mt-[15px] w-full">
+    <div className="mt-[10px] w-full">
       {props.label ? <p className="text-sm font-medium mb-[4px]">{props.label}</p> : null}
       <div
         className={`py-[10px] px-[12px] border flex gap-[8px] ${calculateBorderStyle()} rounded-[8px]`}
@@ -37,9 +37,7 @@ const Input: FC<InputProps> = (props) => {
           onBlur={blur}
         />
       </div>
-      {props.error ? (
-        <p className="text-danger text-xs mt-[4px] h-[8px]">{props.error}</p>
-      ) : null}
+      <p className="text-danger text-xs my-[5px] h-[8px]">{props.error ?? ''}</p>
     </div>
   );
 };
