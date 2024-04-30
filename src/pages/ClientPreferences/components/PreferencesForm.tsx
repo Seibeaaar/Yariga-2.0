@@ -5,16 +5,19 @@ import {
   BED_LIMIT,
   FLOOR_LIMIT,
   PRICE_LIMIT,
+  PropertyFilters,
   ROOM_LIMIT,
 } from "@/types/property";
+import { useDispatch } from "react-redux";
+import { setClientPreferences } from "@/redux/actions/profile";
 import { CLIENT_PREFERENCES_VALIDATION } from "@/schemas/profile";
 import {
-  Euro,
   SquareFoot,
   MeetingRoom,
   Bed,
   MapsHomeWork,
   Foundation,
+  AttachMoney,
 } from "@mui/icons-material";
 import RangeRow from "./RangeRow";
 import Button from "@/components/Button";
@@ -24,43 +27,32 @@ import {
 } from "@/constants/property";
 import { AGREEMENT_TYPE_OPTIONS } from "@/constants/agreement";
 import Selectable from "./Selectable";
+import { AppDispatch } from "@/redux";
 
 const ClientPreferencesForm = () => {
-  const {
-    control,
-    formState: { dirtyFields },
-  } = useForm({
-    defaultValues: {
-      facilities: [],
-      topArea: undefined,
-      bottomArea: undefined,
-      topPrice: undefined,
-      bottomPrice: undefined,
-      topBedsNumber: undefined,
-      bottomBedsNumber: undefined,
-      topFloorsNumber: undefined,
-      bottomFloorsNumber: undefined,
-      topFloorLevel: undefined,
-      bottomFloorLevel: undefined,
-      topRoomsNumber: undefined,
-      bottomRoomsNumber: undefined,
-      agreementType: [],
-      propertyType: [],
-    },
+  const { control, handleSubmit } = useForm({
     resolver: yupResolver(CLIENT_PREFERENCES_VALIDATION),
   });
+  const dispatch = useDispatch<AppDispatch>();
 
-  const [facilities, agreementType, propertyType] = useWatch({
-    control: control,
-    name: ["facilities", "agreementType", "propertyType"],
+  const formValues = useWatch({
+    control,
   });
 
+  const isFormDirty = Object.values(formValues).some((v) =>
+    Array.isArray(v) ? v.length > 0 : Boolean(v),
+  );
+
+  const onSubmit = (data: PropertyFilters) => {
+    dispatch(setClientPreferences(data));
+  };
+
   return (
-    <form className="mx-auto w-3/4 mt-[48px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-3/4 mt-[48px]">
       <div className="flex w-full items-center flex-wrap justify-between mb-[9px]">
         <RangeRow
           label="Price"
-          prefix={<Euro />}
+          prefix={<AttachMoney />}
           max={PRICE_LIMIT.Max}
           min={PRICE_LIMIT.Min}
           control={control}
@@ -117,29 +109,30 @@ const ClientPreferencesForm = () => {
         options={PROPERTY_TYPE_OPTIONS}
         control={control}
         fieldName="propertyType"
-        values={propertyType}
+        values={formValues.propertyType}
         title="Select types of property you're interested in"
       />
       <Selectable
         options={AGREEMENT_TYPE_OPTIONS}
         control={control}
         fieldName="agreementType"
-        values={agreementType}
+        values={formValues.agreementType}
         title="Select types of agreements you're looking for"
       />
       <Selectable
         options={PROPERTY_FACILITIES_OPTIONS}
         control={control}
         fieldName="facilities"
-        values={facilities}
+        values={formValues.facilities}
         title="Select facilities you would like to see"
       />
-      <div className="flex items-center">
-        <Button
-          disabled={Object.values(dirtyFields).every((t) => !t)}
-          text="Add your preferences"
-        />
-      </div>
+      <Button
+        disabled={!isFormDirty}
+        text="Add your preferences"
+        className="mb-[16px]"
+        type="submit"
+      />
+      <Button variant="text" text="Skip for now" />
     </form>
   );
 };

@@ -5,9 +5,10 @@ import {
   FLOOR_LIMIT,
   ROOM_LIMIT,
   BED_LIMIT,
+  PROPERTY_FACILITY,
+  PROPERTY_TYPE,
 } from "@/types/property";
-import { PROPERTY_FACILITIES, PROPERTY_TYPES } from "@/constants/property";
-import { AGREEMENT_TYPES } from "@/constants/agreement";
+import { AGREEMENT_TYPE } from "@/types/agreement";
 
 export const CLIENT_PREFERENCES_VALIDATION = yup.object({
   topPrice: yup
@@ -83,7 +84,13 @@ export const CLIENT_PREFERENCES_VALIDATION = yup.object({
         : schema;
     }),
 
-  facilities: yup.array().ensure().of(yup.string().oneOf(PROPERTY_FACILITIES)),
-  agreementType: yup.array().ensure().of(yup.string().oneOf(AGREEMENT_TYPES)),
-  propertyType: yup.array().ensure().of(yup.string().oneOf(PROPERTY_TYPES))
+  facilities: yup
+    .array()
+    .of(yup.mixed<PROPERTY_FACILITY>().oneOf(Object.values(PROPERTY_FACILITY)).required()),
+  agreementType: yup
+    .array()
+    .of(yup.mixed<AGREEMENT_TYPE>().oneOf(Object.values(AGREEMENT_TYPE)).required()),
+  propertyType: yup
+    .array()
+    .of(yup.mixed<PROPERTY_TYPE>().oneOf(Object.values(PROPERTY_TYPE)).required()),
 });

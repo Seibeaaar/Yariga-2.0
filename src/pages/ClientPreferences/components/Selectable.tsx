@@ -7,7 +7,7 @@ type SelectableProps = {
   control: Control;
   fieldName: string;
   options: Option[];
-  values?: (string | undefined)[];
+  values?: string[];
   title: string;
 };
 
@@ -15,7 +15,7 @@ const Selectable: FC<SelectableProps> = ({
   control,
   options,
   fieldName,
-  values,
+  values = [],
   title,
 }) => (
   <div>
@@ -27,13 +27,14 @@ const Selectable: FC<SelectableProps> = ({
         <div className="flex items-center gap-[16px] flex-wrap mb-[48px] mt-[16px]">
           {options.map((option) => (
             <ToggleOption
+              key={option.value}
               option={option}
               selected={values!.includes(option.value)}
               onClick={() => {
                 onChange(
-                  values?.includes(option.value)
+                  values.includes(option.value)
                     ? values.filter((v) => v !== option.value)
-                    : [...(values || []), option.value],
+                    : [...values, option.value],
                 );
               }}
             />

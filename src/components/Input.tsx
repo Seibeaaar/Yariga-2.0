@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, FC, useState } from "react";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
+  label?: string;
   error?: string;
   prefix?: React.ReactElement;
 };
@@ -25,7 +25,7 @@ const Input: FC<InputProps> = (props) => {
 
   return (
     <div className="mt-[15px] w-full">
-      <p className="text-sm font-medium mb-[4px]">{props.label}</p>
+      {props.label ? <p className="text-sm font-medium mb-[4px]">{props.label}</p> : null}
       <div
         className={`py-[10px] px-[12px] border flex gap-[8px] ${calculateBorderStyle()} rounded-[8px]`}
       >

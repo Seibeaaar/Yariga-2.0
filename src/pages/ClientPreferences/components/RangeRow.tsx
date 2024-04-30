@@ -31,7 +31,7 @@ const RangeRow: FC<RangeRowProps> = ({
           render={({ field: { onChange } }) => (
             <div className="flex-grow">
               <Input
-                label="Min"
+                placeholder="From"
                 prefix={prefix}
                 onChange={onChange}
                 type="number"
@@ -48,7 +48,7 @@ const RangeRow: FC<RangeRowProps> = ({
           render={({ field: { onChange } }) => (
             <div className="flex-grow">
               <Input
-                label="Max"
+                placeholder="To"
                 prefix={prefix}
                 onChange={onChange}
                 type="number"

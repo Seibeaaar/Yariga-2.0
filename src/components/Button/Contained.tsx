@@ -1,15 +1,12 @@
-import { FC, ButtonHTMLAttributes } from "react";
+import { FC } from "react";
+import { ButtonProps } from "./types";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  text: string;
-};
-
-const Button: FC<ButtonProps> = (props) => {
+const ContainedButton: FC<ButtonProps> = (props) => {
   if (props.disabled) {
     return (
       <button
         {...props}
-        className={`w-full py-[10px] border border-transparent text-primary-dark outline-none bg-gray-700 rounded-[10px] ${props.className}`}
+        className={`w-full py-[10px] border cursor-not-allowed border-transparent text-primary-dark outline-none bg-gray-700 rounded-[10px] ${props.className}`}
       >
         <p className="font-semibold text-base text-center">{props.text}</p>
       </button>
@@ -25,4 +22,4 @@ const Button: FC<ButtonProps> = (props) => {
   );
 };
 
-export default Button;
+export default ContainedButton;

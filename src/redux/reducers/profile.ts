@@ -31,7 +31,7 @@ export const profileSlice = createSlice({
       state.profilePictureError = payload;
     },
     setPreferencesPending: (state, { payload }) => {
-      state.profilePicturePending = payload
+      state.setPreferencesPending = payload
     },
     setPreferencesError: (state, { payload }) => {
       state.setPreferencesError = payload;
