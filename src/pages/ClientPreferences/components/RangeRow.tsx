@@ -26,7 +26,7 @@ const RangeRow: FC<RangeRowProps> = ({
   lowestError,
 }) => {
   return (
-    <div className="w-[47.5%] mb-[24px]">
+    <div className="w-full lg:w-[47.5%] mb-[24px]">
       <h4 className="text-lg font-medium">{label}:</h4>
       <div className="flex gap-[12px] items-end w-full">
         <Controller

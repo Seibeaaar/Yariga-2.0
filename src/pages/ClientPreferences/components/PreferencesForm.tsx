@@ -54,7 +54,7 @@ const ClientPreferencesForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-3/4 mt-[48px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto px-[24px] lg:w-3/4 mt-[48px]">
       <div className="flex w-full items-center flex-wrap justify-between mb-[9px]">
         <RangeRow
           label="Price"

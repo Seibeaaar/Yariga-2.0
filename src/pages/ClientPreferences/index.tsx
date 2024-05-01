@@ -20,7 +20,7 @@ const ClientPreferencesScreen = () => {
         title="Uh-oh."
         content="Something went wrong while setting your preferences."
       />
-      <ScreenBackground className="py-[24px] h-fit">
+      <ScreenBackground className="py-[24px] h-fit min-h-screen">
         <h1 className="text-center font-bold text-2xl md:text-3xl mb-[16px]">
           The last step before diving into Yariga is to set your property
           preferences.
