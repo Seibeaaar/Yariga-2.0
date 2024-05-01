@@ -1,4 +1,4 @@
-import { Profile } from "@/types/profile";
+import { ClientPreferences, Profile } from "@/types/profile";
 import instance from ".";
 
 export const uploadProfilePictureRequest = async (
@@ -10,4 +10,11 @@ export const uploadProfilePictureRequest = async (
     },
   });
   return result.data;
+};
+
+export const setClientPreferencesRequest = async (
+  preferences: ClientPreferences
+): Promise<Profile> => {
+  const result = await instance.post('/profile/preferences', preferences);
+  return result.data
 };

@@ -1,3 +1,5 @@
+import { PropertyFilters } from "./property";
+
 export type Profile = {
   firstName: string;
   lastName: string;
@@ -18,3 +20,5 @@ export enum USER_ROLE {
 export type ProfilePictureRequest = {
   picture: BufferSource;
 };
+
+export type ClientPreferences = PropertyFilters;

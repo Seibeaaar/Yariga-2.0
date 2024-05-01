@@ -9,11 +9,11 @@ import Loader from "@/components/Loader";
 import ScreenBackground from "@/components/Background";
 
 const SignUpScreen = () => {
-  const { authPending } = useSelector((state: RootState) => state.profile);
+  const { authPending } = useSelector((state: RootState) => state.auth);
 
   return (
     <ScreenBackground className="flex">
-      {authPending ? <Loader /> : null}
+      <Loader showLoader={authPending} />
       <section className="h-full md:w-1/2 w-full px-[24px] xl:p-0 flex items-center justify-center">
         <div className="2xl:w-1/2 xl:w-2/3 w-full">
           <motion.div

@@ -1,5 +1,7 @@
 import profileReducer from "./profile";
+import authReducer from './auth';
 
 export default {
-    profile: profileReducer
+    profile: profileReducer,
+    auth: authReducer
 }

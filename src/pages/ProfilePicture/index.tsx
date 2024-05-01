@@ -47,7 +47,7 @@ const ProfilePictureScreen = () => {
 
   return (
     <>
-      {profilePicturePending ? <Loader /> : null}
+      <Loader showLoader={profilePicturePending} />
       <ScreenContainer className="pt-[24px] pb-[48px] px-[24px] xl:px-0 flex flex-col items-center">
         <Tooltip
           showTooltip={!!profilePictureError}
