@@ -1,4 +1,5 @@
 import { useForm, useWatch } from "react-hook-form";
+import { motion } from "framer-motion";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   AREA_LIMIT,
@@ -43,19 +44,32 @@ const ClientPreferencesForm = () => {
     control,
   });
 
-  const isSubmitDisabled = (
+  const isSubmitDisabled =
     Object.values(formValues).every((v) =>
       Array.isArray(v) ? v.length === 0 : !v,
-    ) || Object.keys(errors).length > 0
-  );
+    ) || Object.keys(errors).length > 0;
 
   const onSubmit = (data: PropertyFilters) => {
     dispatch(setClientPreferences(data));
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto px-[24px] lg:w-3/4 mt-[48px]">
-      <div className="flex w-full items-center flex-wrap justify-between mb-[9px]">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="mx-auto px-[24px] lg:w-3/4 mt-[48px]"
+    >
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -100,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{ duration: 1 }}
+        className="flex w-full items-center flex-wrap justify-between mb-[9px]"
+      >
         <RangeRow
           label="Price"
           prefix={<AttachMoney />}
@@ -122,35 +136,83 @@ const ClientPreferencesForm = () => {
           highestError={errors?.topFloorLevel?.message}
           lowestError={errors?.bottomFloorLevel?.message}
         />
-      </div>
-      <Selectable
-        options={PROPERTY_TYPE_OPTIONS}
-        control={control}
-        fieldName="propertyType"
-        values={formValues.propertyType}
-        title="Select types of property you're interested in"
-      />
-      <Selectable
-        options={AGREEMENT_TYPE_OPTIONS}
-        control={control}
-        fieldName="agreementType"
-        values={formValues.agreementType}
-        title="Select types of agreements you're looking for"
-      />
-      <Selectable
-        options={PROPERTY_FACILITIES_OPTIONS}
-        control={control}
-        fieldName="facilities"
-        values={formValues.facilities}
-        title="Select facilities you would like to see"
-      />
-      <Button
-        disabled={isSubmitDisabled}
-        text="Add your preferences"
-        className="mb-[16px]"
-        type="submit"
-      />
-      <Button variant="text" text="Skip for now" />
+      </motion.div>
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -100,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{ duration: 1, delay: 0.25 }}
+      >
+        <Selectable
+          options={PROPERTY_TYPE_OPTIONS}
+          control={control}
+          fieldName="propertyType"
+          values={formValues.propertyType}
+          title="Select types of property you're interested in"
+        />
+      </motion.div>
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -100,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        <Selectable
+          options={AGREEMENT_TYPE_OPTIONS}
+          control={control}
+          fieldName="agreementType"
+          values={formValues.agreementType}
+          title="Select types of agreements you're looking for"
+        />
+      </motion.div>
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -100,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{ duration: 1, delay: 0.75 }}
+      >
+        <Selectable
+          options={PROPERTY_FACILITIES_OPTIONS}
+          control={control}
+          fieldName="facilities"
+          values={formValues.facilities}
+          title="Select facilities you would like to see"
+        />
+      </motion.div>
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -100,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{ duration: 1, delay: 1 }}
+      >
+        <Button
+          disabled={isSubmitDisabled}
+          text="Add your preferences"
+          className="mb-[16px]"
+          type="submit"
+        />
+        <Button variant="text" text="Skip for now" />
+      </motion.div>
     </form>
   );
 };

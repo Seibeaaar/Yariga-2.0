@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 import ScreenBackground from "@/components/Background";
 import ClientPreferencesForm from "./components/PreferencesForm";
 import { RootState } from "@/redux";
@@ -12,7 +13,7 @@ const ClientPreferencesScreen = () => {
   return (
     <>
       <Loader showLoader={setPreferencesPending} />
-      <Tooltip 
+      <Tooltip
         showTooltip={!!setPreferencesError}
         severity="error"
         vertical="top"
@@ -21,13 +22,26 @@ const ClientPreferencesScreen = () => {
         content="Something went wrong while setting your preferences."
       />
       <ScreenBackground className="py-[24px] h-fit min-h-screen">
-        <h1 className="text-center font-bold text-2xl md:text-3xl mb-[16px]">
-          The last step before diving into Yariga is to set your property
-          preferences.
-        </h1>
-        <h3 className="text-center font-medium text-xl">
-          It is optional but it can ensure the best experience on the platform.
-        </h3>
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: -100,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{ ease: "easeOut", duration: 1 }}
+        >
+          <h1 className="text-center font-bold text-2xl md:text-3xl mb-[16px]">
+            The last step before diving into Yariga is to set your property
+            preferences.
+          </h1>
+          <h3 className="text-center font-medium text-xl">
+            It is optional but it can ensure the best experience on the
+            platform.
+          </h3>
+        </motion.div>
         <ClientPreferencesForm />
       </ScreenBackground>
     </>
