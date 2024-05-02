@@ -1,6 +1,13 @@
 import instance from ".";
-import { LoginData, SignUpData, AuthRequestResponse, ProfileCompletionRequest } from "@/types/auth";
+import {
+  LoginData,
+  SignUpData,
+  AuthRequestResponse,
+  ProfileCompletionRequest,
+  GoogleAuthResponse,
+} from "@/types/auth";
 import { Profile } from "@/types/profile";
+import axios from "axios";
 
 export const loginRequest = async (
   data: LoginData,
@@ -17,15 +24,22 @@ export const signUpRequest = async (
 };
 
 export const emailVerificationRequest = async (
-  id: string
+  id: string,
 ): Promise<Profile> => {
   const result = await instance.post(`/verification/email/${id}`);
   return result.data;
-}
+};
 
 export const completeProfileRequest = async (
   data: ProfileCompletionRequest,
 ): Promise<Profile> => {
   const result = await instance.post("/auth/complete", data);
+  return result.data;
+};
+
+export const authViaGoogleRequest = async (data: {
+  token: string;
+}): Promise<GoogleAuthResponse> => {
+  const result = await axios.post('http://localhost:5001/auth/google', data);
   return result.data;
 };

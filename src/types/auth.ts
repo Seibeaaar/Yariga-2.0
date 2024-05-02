@@ -15,6 +15,10 @@ export type AuthRequestResponse = {
   token: string;
 };
 
+export type GoogleAuthResponse = AuthRequestResponse & {
+  isNew: boolean;
+}
+
 export type ProfileCompletionRequest = {
   role: USER_ROLE;
   taxNumber?: string;
