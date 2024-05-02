@@ -1,15 +1,17 @@
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
+import { useGoogleLogin } from "@react-oauth/google";
 
 import { useDispatch } from "react-redux";
-import { login } from "@/redux/actions/auth";
+import { login, authViaGoogle } from "@/redux/actions/auth";
 import { AppDispatch } from "@/redux";
 
 import { LOGIN_SCHEMA } from "@/schemas/auth";
 import Input from "@/components/Input";
 import { LoginData } from "@/types/auth";
 import Button from "@/components/Button";
+import GoogleIcon from "@/assets/icons/Google.svg";
 
 const LoginForm = () => {
   const {
@@ -26,6 +28,12 @@ const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const onLogin = (data: LoginData) => dispatch(login(data));
+
+  const onGoogleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      dispatch(authViaGoogle(tokenResponse.access_token));
+    },
+  });
 
   return (
     <motion.form
@@ -65,8 +73,14 @@ const LoginForm = () => {
           />
         )}
       />
-      <div className="my-[20px]">
+      <div className="my-[20px] flex flex-col gap-[24px]">
         <Button type="submit" text="Login" />
+        <Button
+          variant="outlined"
+          onClick={() => onGoogleLogin()}
+          leftIcon={GoogleIcon}
+          text="Continue with Google"
+        />
       </div>
     </motion.form>
   );

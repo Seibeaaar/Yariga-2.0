@@ -8,6 +8,8 @@ type AuthReducerInitialState = {
   emailVerificationSuccessful: boolean;
   profileCompletePending: boolean;
   profileCompleteError: string | null;
+  authViaGooglePending: boolean;
+  authViaGoogleError: string | null;
 };
 
 const initialState: AuthReducerInitialState = {
@@ -18,6 +20,8 @@ const initialState: AuthReducerInitialState = {
   emailVerificationSuccessful: false,
   profileCompletePending: false,
   profileCompleteError: null,
+  authViaGooglePending: false,
+  authViaGoogleError: null
 };
 
 export const authSlice = createSlice({
@@ -44,6 +48,12 @@ export const authSlice = createSlice({
     },
     profileCompleteError: (state, { payload }) => {
       state.profileCompleteError = payload;
+    },
+    authViaGooglePending: (state, { payload }) => {
+      state.authViaGooglePending = payload;
+    },
+    authViaGoogleError: (state, { payload }) => {
+      state.authViaGoogleError = payload;
     }
   },
 });
@@ -56,6 +66,8 @@ export const {
   emailVerificationSuccessful,
   profileCompleteError,
   profileCompletePending,
+  authViaGoogleError,
+  authViaGooglePending
 } = authSlice.actions;
 
 export default authSlice.reducer;
