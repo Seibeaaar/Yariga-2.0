@@ -21,7 +21,7 @@ const ClientPreferencesScreen = () => {
         title="Uh-oh."
         content="Something went wrong while setting your preferences."
       />
-      <ScreenBackground className="py-[24px] h-fit min-h-screen">
+      <ScreenBackground className="py-[24px] h-fit">
         <motion.div
           initial={{
             opacity: 0,

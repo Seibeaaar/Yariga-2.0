@@ -9,7 +9,7 @@ type RangeRowProps = {
   control: Control;
   max: number;
   min: number;
-  prefix: React.ReactElement;
+  prefix: React.ReactNode;
   lowestError?: string;
   highestError?: string;
 };
@@ -36,7 +36,7 @@ const RangeRow: FC<RangeRowProps> = ({
             <div className="w-[45%]">
               <Input
                 placeholder="From"
-                prefix={prefix}
+                prefixIcon={prefix}
                 onChange={onChange}
                 type="number"
                 max={max}
@@ -54,7 +54,7 @@ const RangeRow: FC<RangeRowProps> = ({
             <div className="w-[45%]">
               <Input
                 placeholder="To"
-                prefix={prefix}
+                prefixIcon={prefix}
                 onChange={onChange}
                 type="number"
                 max={max}

@@ -3,7 +3,7 @@ import { InputHTMLAttributes, FC, useState } from "react";
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   error?: string;
-  prefix?: React.ReactElement;
+  prefixIcon?: React.ReactNode;
 };
 
 const Input: FC<InputProps> = (props) => {
@@ -29,7 +29,7 @@ const Input: FC<InputProps> = (props) => {
       <div
         className={`py-[10px] px-[12px] border flex gap-[8px] ${calculateBorderStyle()} rounded-[8px]`}
       >
-        {props.prefix ?? null}
+        {props.prefixIcon}
         <input
           className="dark:[color-scheme:dark] bg-transparent w-full outline-none border-none"
           {...props}
