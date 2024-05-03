@@ -10,7 +10,7 @@ const ScreenBackground: FC<ScreenContainerProps> = ({
   className,
 }) => (
   <main
-    className={`w-screen h-screen top-0 left-0 bg-light dark:bg-black text-primary-light dark:text-primary-dark ${className}`}
+    className={`w-screen h-screen top-0 left-0 fixed overflow-auto bg-light dark:bg-black text-primary-light dark:text-primary-dark ${className}`}
   >
     {children}
   </main>
