@@ -124,7 +124,7 @@ function* authViaGoogleSaga(
     localStorage.setItem("JWT", token);
     yield put(setProfile(profile));
 
-    router.navigate(isNew ? "/dashboard" : "/email-sent");
+    router.navigate(!isNew ? "/dashboard" : "/email-sent");
   } catch (e) {
     authViaGoogleError(generateErrorMesaage(e));
   } finally {

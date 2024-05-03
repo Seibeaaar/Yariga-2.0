@@ -7,7 +7,6 @@ import {
   GoogleAuthResponse,
 } from "@/types/auth";
 import { Profile } from "@/types/profile";
-import axios from "axios";
 
 export const loginRequest = async (
   data: LoginData,
@@ -40,6 +39,6 @@ export const completeProfileRequest = async (
 export const authViaGoogleRequest = async (data: {
   token: string;
 }): Promise<GoogleAuthResponse> => {
-  const result = await axios.post('http://localhost:5001/auth/google', data);
+  const result = await instance.post("/auth/google", data);
   return result.data;
 };
