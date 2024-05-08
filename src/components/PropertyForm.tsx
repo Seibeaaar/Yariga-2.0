@@ -3,10 +3,19 @@ import { motion } from "framer-motion";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import GalleryUpload from "./GalleryUpload";
+import {
+  SquareFoot,
+  MeetingRoom,
+  Bed,
+  MapsHomeWork,
+  Foundation,
+  AttachMoney,
+} from "@mui/icons-material";
 
 import { PROPERTY_VALIDATION_SCHEMA } from "@/schemas/property";
 import Input from "./Input";
 import Textarea from "./Textarea";
+import LocationPicker from "./LocationPicker";
 
 type PropertyFormProps = {
   mode: "create" | "edit";
@@ -64,6 +73,102 @@ const PropertyForm: FC<PropertyFormProps> = () => {
           )}
         />
       </motion.div>
+      <LocationPicker />
+      <div className="flex flex-wrap gap-[24px]">
+        <Controller
+          control={control}
+          name="area"
+          render={({ field: { onChange } }) => (
+            <div className="w-[calc(50%-12px)]">
+              <Input
+                onChange={onChange}
+                prefixIcon={<SquareFoot />}
+                label="Property area (sq.m.)"
+                type="number"
+                error={errors?.title?.message}
+                placeholder="Area in sq.m."
+              />
+            </div>
+          )}
+        />
+        <Controller
+          control={control}
+          name="price"
+          render={({ field: { onChange } }) => (
+            <div className="w-[calc(50%-12px)]">
+              <Input
+                onChange={onChange}
+                prefixIcon={<AttachMoney />}
+                label="Property price"
+                type="number"
+                error={errors?.title?.message}
+                placeholder="Price of purchase or rent"
+              />
+            </div>
+          )}
+        />
+        <Controller
+          control={control}
+          name="rooms"
+          render={({ field: { onChange } }) => (
+            <div className="w-[calc(50%-12px)]">
+              <Input
+                onChange={onChange}
+                prefixIcon={<MeetingRoom />}
+                label="Number of rooms"
+                type="number"
+                error={errors?.title?.message}
+                placeholder="Number of rooms available"
+              />
+            </div>
+          )}
+        />
+        <Controller
+          control={control}
+          name="beds"
+          render={({ field: { onChange } }) => (
+            <div className="w-[calc(50%-12px)]">
+              <Input
+                onChange={onChange}
+                label="Number of beds"
+                error={errors?.title?.message}
+                placeholder="Number of beds available"
+                prefixIcon={<Bed />}
+              />
+            </div>
+          )}
+        />
+        <Controller
+          control={control}
+          name="floors"
+          render={({ field: { onChange } }) => (
+            <div className="w-[calc(50%-12px)]">
+              <Input
+                onChange={onChange}
+                label="Number of floors"
+                prefixIcon={<MapsHomeWork />}
+                error={errors?.title?.message}
+                placeholder="Number of floors"
+              />
+            </div>
+          )}
+        />
+        <Controller
+          control={control}
+          name="floorLevel"
+          render={({ field: { onChange } }) => (
+            <div className="w-[calc(50%-12px)]">
+              <Input
+                onChange={onChange}
+                label="Property's floor level"
+                prefixIcon={<Foundation />}
+                error={errors?.title?.message}
+                placeholder="Enter property's floor level"
+              />
+            </div>
+          )}
+        />
+      </div>
     </form>
   );
 };
