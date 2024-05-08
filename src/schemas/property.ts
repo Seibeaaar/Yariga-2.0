@@ -12,6 +12,7 @@ import {
   ELEVATED_PROPERTY_TYPES,
   HOSTING_PROPERTY_TYPES,
 } from "@/constants/property";
+import { AGREEMENT_TYPE } from "@/types/agreement";
 
 export const PROPERTY_VALIDATION_SCHEMA = yup.object({
   title: yup.string().required("Property title required"),
@@ -62,4 +63,6 @@ export const PROPERTY_VALIDATION_SCHEMA = yup.object({
     .array()
     .ensure()
     .of(yup.string().oneOf(Object.values(PROPERTY_FACILITY))),
+  agreementType: yup.string().oneOf(Object.values(AGREEMENT_TYPE)).required(),
+  propertyType: yup.string().oneOf(Object.values(PROPERTY_TYPE)).required()
 });

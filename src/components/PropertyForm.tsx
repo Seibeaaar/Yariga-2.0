@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import GalleryUpload from "./GalleryUpload";
 import {
@@ -16,6 +16,9 @@ import { PROPERTY_VALIDATION_SCHEMA } from "@/schemas/property";
 import Input from "./Input";
 import Textarea from "./Textarea";
 import LocationPicker from "./LocationPicker";
+import { AGREEMENT_TYPE_OPTIONS } from "@/constants/agreement";
+import OptionCard from "./OptionsCard";
+import { PROPERTY_TYPE_OPTIONS } from "@/constants/property";
 
 type PropertyFormProps = {
   mode: "create" | "edit";
@@ -32,6 +35,10 @@ const PropertyForm: FC<PropertyFormProps> = () => {
       description: "",
     },
     resolver: yupResolver(PROPERTY_VALIDATION_SCHEMA),
+  });
+
+  const formValues = useWatch({
+    control,
   });
 
   return (
@@ -73,8 +80,37 @@ const PropertyForm: FC<PropertyFormProps> = () => {
           )}
         />
       </motion.div>
-      <LocationPicker />
-      <div className="flex flex-wrap gap-[24px]">
+      <Controller
+        control={control}
+        name="location"
+        render={() => (
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -100,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{ ease: "easeOut", duration: 1, delay: 0.5 }}
+          >
+            <LocationPicker />
+          </motion.div>
+        )}
+      />
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -100,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{ ease: "easeOut", duration: 1, delay: 0.75 }}
+        className="flex flex-wrap gap-[24px]"
+      >
         <Controller
           control={control}
           name="area"
@@ -168,7 +204,69 @@ const PropertyForm: FC<PropertyFormProps> = () => {
             </div>
           )}
         />
-      </div>
+      </motion.div>
+      <Controller
+        control={control}
+        name="agreementType"
+        render={({ field: { onChange } }) => (
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -100,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{ ease: "easeOut", duration: 1, delay: 1 }}
+            className="w-full"
+          >
+            <p className="text-lg">Select an agreement type:</p>
+            <div className="flex items-center justify-center gap-[16px] mt-[24px]">
+              {AGREEMENT_TYPE_OPTIONS.map((option) => (
+                <OptionCard
+                  option={option}
+                  key={option.value}
+                  selected={option.value === formValues.agreementType}
+                  className="text-xl w-[25%]"
+                  onSelect={onChange}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      />
+      <Controller
+        control={control}
+        name="propertyType"
+        render={({ field: { onChange } }) => (
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -100,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{ ease: "easeOut", duration: 1, delay: 1.25 }}
+            className="w-full"
+          >
+            <p className="text-lg">Select a type of your property:</p>
+            <div className="flex justify-center gap-[16px] mt-[24px]">
+              {PROPERTY_TYPE_OPTIONS.map((option) => (
+                <OptionCard
+                  option={option}
+                  key={option.value}
+                  selected={option.value === formValues.propertyType}
+                  className="text-xl w-[20%]"
+                  onSelect={onChange}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      />
     </form>
   );
 };
