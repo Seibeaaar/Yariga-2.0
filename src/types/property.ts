@@ -87,14 +87,13 @@ export type PropertyData = {
   facilities: PROPERTY_FACILITY[];
   price: number;
   area: number;
-  priceNegotiable: boolean;
   rooms: number;
   beds?: number;
   floors: number;
   location: string;
   floorLevel?: number;
   title: string;
-  descritpion: string;
+  description: string;
 };
 
 export type Property = PropertyData & {

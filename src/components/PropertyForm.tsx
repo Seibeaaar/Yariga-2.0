@@ -11,28 +11,45 @@ import {
   Foundation,
   AttachMoney,
 } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { addProperty } from "@/redux/actions/property";
+import { AppDispatch } from "@/redux";
 
 import { PROPERTY_VALIDATION_SCHEMA } from "@/schemas/property";
 import Input from "./Input";
 import Textarea from "./Textarea";
 import LocationPicker from "./LocationPicker";
+import Selectable from "./Selectable";
 import { AGREEMENT_TYPE_OPTIONS } from "@/constants/agreement";
 import OptionCard from "./OptionsCard";
-import { PROPERTY_TYPE_OPTIONS } from "@/constants/property";
+import {
+  PROPERTY_TYPE_OPTIONS,
+  PROPERTY_FACILITIES_OPTIONS,
+} from "@/constants/property";
+import Button from "./Button";
+import { PROPERTY_TYPE, Property, PropertyData } from "@/types/property";
+import { AGREEMENT_TYPE } from "@/types/agreement";
 
 type PropertyFormProps = {
   mode: "create" | "edit";
   submitText: string;
+  defaultValues?: Property;
 };
 
-const PropertyForm: FC<PropertyFormProps> = () => {
+const PropertyForm: FC<PropertyFormProps> = ({
+  submitText
+}) => {
   const {
     control,
     formState: { errors },
+    handleSubmit
   } = useForm({
     defaultValues: {
       title: "",
       description: "",
+      facilities: [],
+      type: PROPERTY_TYPE.House,
+      agreementType: AGREEMENT_TYPE.Sale
     },
     resolver: yupResolver(PROPERTY_VALIDATION_SCHEMA),
   });
@@ -41,8 +58,14 @@ const PropertyForm: FC<PropertyFormProps> = () => {
     control,
   });
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onSubmit = (data: PropertyData) => {
+    dispatch(addProperty(data));
+  }
+
   return (
-    <form className="mx-auto px-[32px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto px-[32px]">
       <GalleryUpload />
       <motion.div
         initial={{
@@ -95,7 +118,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
             }}
             transition={{ ease: "easeOut", duration: 1, delay: 0.5 }}
           >
-            <LocationPicker />
+            <LocationPicker control={control} error={errors.location?.message} />
           </motion.div>
         )}
       />
@@ -109,7 +132,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
           x: 0,
         }}
         transition={{ ease: "easeOut", duration: 1, delay: 0.75 }}
-        className="flex flex-wrap gap-[24px]"
+        className="flex flex-wrap gap-x-[24px]"
       >
         <Controller
           control={control}
@@ -121,7 +144,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
                 prefixIcon={<SquareFoot />}
                 label="Property area (sq.m.)"
                 type="number"
-                error={errors?.title?.message}
+                error={errors?.area?.message}
                 placeholder="Area in sq.m."
               />
             </div>
@@ -137,7 +160,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
                 prefixIcon={<AttachMoney />}
                 label="Property price"
                 type="number"
-                error={errors?.title?.message}
+                error={errors?.price?.message}
                 placeholder="Price of purchase or rent"
               />
             </div>
@@ -153,7 +176,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
                 prefixIcon={<MeetingRoom />}
                 label="Number of rooms"
                 type="number"
-                error={errors?.title?.message}
+                error={errors?.rooms?.message}
                 placeholder="Number of rooms available"
               />
             </div>
@@ -167,7 +190,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
               <Input
                 onChange={onChange}
                 label="Number of beds"
-                error={errors?.title?.message}
+                error={errors?.beds?.message}
                 placeholder="Number of beds available"
                 prefixIcon={<Bed />}
               />
@@ -183,7 +206,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
                 onChange={onChange}
                 label="Number of floors"
                 prefixIcon={<MapsHomeWork />}
-                error={errors?.title?.message}
+                error={errors?.floors?.message}
                 placeholder="Number of floors"
               />
             </div>
@@ -198,7 +221,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
                 onChange={onChange}
                 label="Property's floor level"
                 prefixIcon={<Foundation />}
-                error={errors?.title?.message}
+                error={errors?.floorLevel?.message}
                 placeholder="Enter property's floor level"
               />
             </div>
@@ -219,7 +242,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
               x: 0,
             }}
             transition={{ ease: "easeOut", duration: 1, delay: 1 }}
-            className="w-full"
+            className="w-full my-[24px]"
           >
             <p className="text-lg">Select an agreement type:</p>
             <div className="flex items-center justify-center gap-[16px] mt-[24px]">
@@ -238,7 +261,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
       />
       <Controller
         control={control}
-        name="propertyType"
+        name="type"
         render={({ field: { onChange } }) => (
           <motion.div
             initial={{
@@ -250,7 +273,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
               x: 0,
             }}
             transition={{ ease: "easeOut", duration: 1, delay: 1.25 }}
-            className="w-full"
+            className="w-full mb-[24px]"
           >
             <p className="text-lg">Select a type of your property:</p>
             <div className="flex justify-center gap-[16px] mt-[24px]">
@@ -258,7 +281,7 @@ const PropertyForm: FC<PropertyFormProps> = () => {
                 <OptionCard
                   option={option}
                   key={option.value}
-                  selected={option.value === formValues.propertyType}
+                  selected={option.value === formValues.type}
                   className="text-xl w-[20%]"
                   onSelect={onChange}
                 />
@@ -267,6 +290,31 @@ const PropertyForm: FC<PropertyFormProps> = () => {
           </motion.div>
         )}
       />
+      <motion.div
+        initial={{
+          opacity: 0,
+          x: -100,
+        }}
+        animate={{
+          opacity: 1,
+          x: 0,
+        }}
+        transition={{ ease: "easeOut", duration: 1, delay: 1.5 }}
+      >
+        <Selectable
+          fieldName="facilities"
+          control={control}
+          options={PROPERTY_FACILITIES_OPTIONS}
+          values={formValues.facilities}
+          title="Select facilities available in your property"
+        />
+      </motion.div>
+      <motion.div>
+        <Button 
+          text={submitText}
+          type="submit"
+        />
+      </motion.div>
     </form>
   );
 };

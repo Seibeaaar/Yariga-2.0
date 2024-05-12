@@ -39,7 +39,7 @@ const Textarea: FC<TextareaProps> = (props) => {
           onBlur={blur}
         />
       </div>
-      <p className="text-danger text-xs my-[5px] h-[8px]">
+      <p className="text-danger text-xs my-[5px]">
         {props.error ?? ""}
       </p>
     </div>

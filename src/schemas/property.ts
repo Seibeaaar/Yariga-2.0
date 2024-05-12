@@ -30,7 +30,6 @@ export const PROPERTY_VALIDATION_SCHEMA = yup.object({
     .required("Price required")
     .min(PRICE_LIMIT.Min, "Price cannot be lower than 1$")
     .max(PRICE_LIMIT.Max, "Price cannot be higher than 50M $"),
-  priceNegotiable: yup.boolean(),
   type: yup
     .string()
     .required("Property type required")
@@ -43,7 +42,7 @@ export const PROPERTY_VALIDATION_SCHEMA = yup.object({
   beds: yup.number().when("type", ([type], schema) => {
     return HOSTING_PROPERTY_TYPES.includes(type)
       ? schema
-          .required()
+          .required("Number of beds required")
           .min(BED_LIMIT.Min, "At least one bed")
           .max(BED_LIMIT.Max, "Top number of beds - 2000")
       : schema;
@@ -62,7 +61,7 @@ export const PROPERTY_VALIDATION_SCHEMA = yup.object({
   facilities: yup
     .array()
     .ensure()
-    .of(yup.string().oneOf(Object.values(PROPERTY_FACILITY))),
+    .required()
+    .of(yup.string().oneOf(Object.values(PROPERTY_FACILITY)).required()),
   agreementType: yup.string().oneOf(Object.values(AGREEMENT_TYPE)).required(),
-  propertyType: yup.string().oneOf(Object.values(PROPERTY_TYPE)).required()
 });

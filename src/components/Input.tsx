@@ -37,7 +37,7 @@ const Input: FC<InputProps> = (props) => {
           onBlur={blur}
         />
       </div>
-      <p className="text-danger text-xs my-[5px] h-[8px]">{props.error ?? ''}</p>
+      <p className="text-danger text-xs mt-[5px] mb-[12px]">{props.error ?? ''}</p>
     </div>
   );
 };
