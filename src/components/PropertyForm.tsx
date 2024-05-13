@@ -26,6 +26,7 @@ import {
   PROPERTY_TYPE_OPTIONS,
   PROPERTY_FACILITIES_OPTIONS,
 } from "@/constants/property";
+import { BED_LIMIT, AREA_LIMIT, PRICE_LIMIT, FLOOR_LIMIT, ROOM_LIMIT } from "@/types/property";
 import Button from "./Button";
 import { PROPERTY_TYPE, Property, PropertyData } from "@/types/property";
 import { AGREEMENT_TYPE } from "@/types/agreement";
@@ -146,6 +147,8 @@ const PropertyForm: FC<PropertyFormProps> = ({
                 type="number"
                 error={errors?.area?.message}
                 placeholder="Area in sq.m."
+                min={AREA_LIMIT.Min}
+                max={AREA_LIMIT.Max}
               />
             </div>
           )}
@@ -161,6 +164,8 @@ const PropertyForm: FC<PropertyFormProps> = ({
                 label="Property price"
                 type="number"
                 error={errors?.price?.message}
+                min={PRICE_LIMIT.Min}
+                max={PRICE_LIMIT.Max}
                 placeholder="Price of purchase or rent"
               />
             </div>
@@ -177,6 +182,8 @@ const PropertyForm: FC<PropertyFormProps> = ({
                 label="Number of rooms"
                 type="number"
                 error={errors?.rooms?.message}
+                min={ROOM_LIMIT.Min}
+                max={ROOM_LIMIT.Max}
                 placeholder="Number of rooms available"
               />
             </div>
@@ -191,6 +198,9 @@ const PropertyForm: FC<PropertyFormProps> = ({
                 onChange={onChange}
                 label="Number of beds"
                 error={errors?.beds?.message}
+                type="number"
+                min={BED_LIMIT.Min}
+                max={BED_LIMIT.Max}
                 placeholder="Number of beds available"
                 prefixIcon={<Bed />}
               />
@@ -206,6 +216,9 @@ const PropertyForm: FC<PropertyFormProps> = ({
                 onChange={onChange}
                 label="Number of floors"
                 prefixIcon={<MapsHomeWork />}
+                type="number"
+                min={FLOOR_LIMIT.Min}
+                max={FLOOR_LIMIT.Max}
                 error={errors?.floors?.message}
                 placeholder="Number of floors"
               />
@@ -221,6 +234,9 @@ const PropertyForm: FC<PropertyFormProps> = ({
                 onChange={onChange}
                 label="Property's floor level"
                 prefixIcon={<Foundation />}
+                min={FLOOR_LIMIT.Min}
+                max={FLOOR_LIMIT.Max}
+                type="number"
                 error={errors?.floorLevel?.message}
                 placeholder="Enter property's floor level"
               />

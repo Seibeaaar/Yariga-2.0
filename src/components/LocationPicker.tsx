@@ -11,7 +11,7 @@ type LocationPickerProps = {
 
 const LocationPicker: FC<LocationPickerProps> = ({ control, error }) => {
   const { placePredictions, getPlacePredictions } = usePlacesService({
-    apiKey: "AIzaSyDqbIpfoohQchbEyeZX16MYYPV3bq7l57s",
+    apiKey: import.meta.env.VITE_MAPS_KEY,
   });
   const [location, setLocation] = useState<string>("");
 
