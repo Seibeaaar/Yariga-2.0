@@ -19,10 +19,10 @@ const ToggleOption: FC<ToggleOptionProps> = ({ option, onClick, selected }) => {
   return (
     <div
       onClick={() => onClick(option.value)}
-      className={`flex py-[12px] px-[16px] rounded-[24px] items-center gap-[16px] ${selected ? "bg-primary" : "bg-border-light dark:bg-border-dark"} cursor-pointer hover:bg-primary hover:dark:bg-primary transition-all`}
+      className={`flex py-[12px] px-[16px] hover:text-white rounded-[24px] items-center gap-[16px] ${selected ? "bg-primary text-white" : "bg-border-light dark:bg-border-dark"} cursor-pointer hover:bg-primary hover:dark:bg-primary transition-all`}
     >
       <Icon />
-      <p className="font-semibold text-lg">{option.label}</p>
+      <p className="font-semibold text-lg text-inherit">{option.label}</p>
     </div>
   );
 };

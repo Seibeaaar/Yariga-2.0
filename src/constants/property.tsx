@@ -70,27 +70,27 @@ export const PROPERTY_FACILITIES = [
 export const PROPERTY_TYPE_OPTIONS = [
   {
     label: "House",
-    icon: Home,
+    icon: <Home fontSize="large" />,
     value: PROPERTY_TYPE.House,
   },
   {
     label: "Apartment",
-    icon: Apartment,
+    icon: <Apartment fontSize="large" />,
     value: PROPERTY_TYPE.Apartment,
   },
   {
     label: "Commercial",
-    icon: Factory,
+    icon: <Factory fontSize="large" />,
     value: PROPERTY_TYPE.Commercial,
   },
   {
     label: "Hotel",
-    icon: Hotel,
+    icon: <Hotel fontSize="large" />,
     value: PROPERTY_TYPE.Hotel,
   },
   {
     label: "Garage",
-    icon: Warehouse,
+    icon: <Warehouse fontSize="large" />,
     value: PROPERTY_TYPE.Garage,
   },
 ];
