@@ -12,7 +12,7 @@ const GalleryImage: FC<GalleryImageProps> = ({ image, onDelete }) => {
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="w-[calc(20%-17.5px)] h-[180px] cursor-pointer relative rounded-[10px] overflow-hidden"
+      className="w-[47.5%] md:w-[31.5%] lg:w-[19%] h-[180px] cursor-pointer relative rounded-[10px] overflow-hidden"
     >
       <img
         src={URL.createObjectURL(image)}

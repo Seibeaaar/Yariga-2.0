@@ -66,7 +66,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto px-[32px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto px-[24px] lg:px-[32px]">
       <GalleryUpload />
       <motion.div
         initial={{
@@ -139,7 +139,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
           control={control}
           name="area"
           render={({ field: { onChange } }) => (
-            <div className="w-[calc(50%-12px)]">
+            <div className="w-full lg:w-[calc(50%-12px)]">
               <Input
                 onChange={onChange}
                 prefixIcon={<SquareFoot />}
@@ -157,7 +157,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
           control={control}
           name="price"
           render={({ field: { onChange } }) => (
-            <div className="w-[calc(50%-12px)]">
+            <div className="w-full lg:w-[calc(50%-12px)]">
               <Input
                 onChange={onChange}
                 prefixIcon={<AttachMoney />}
@@ -175,7 +175,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
           control={control}
           name="rooms"
           render={({ field: { onChange } }) => (
-            <div className="w-[calc(50%-12px)]">
+            <div className="w-full lg:w-[calc(50%-12px)]">
               <Input
                 onChange={onChange}
                 prefixIcon={<MeetingRoom />}
@@ -193,7 +193,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
           control={control}
           name="beds"
           render={({ field: { onChange } }) => (
-            <div className="w-[calc(50%-12px)]">
+            <div className="w-full lg:w-[calc(50%-12px)]">
               <Input
                 onChange={onChange}
                 label="Number of beds"
@@ -211,7 +211,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
           control={control}
           name="floors"
           render={({ field: { onChange } }) => (
-            <div className="w-[calc(50%-12px)]">
+            <div className="w-full lg:w-[calc(50%-12px)]">
               <Input
                 onChange={onChange}
                 label="Number of floors"
@@ -229,7 +229,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
           control={control}
           name="floorLevel"
           render={({ field: { onChange } }) => (
-            <div className="w-[calc(50%-12px)]">
+            <div className="w-full lg:w-[calc(50%-12px)]">
               <Input
                 onChange={onChange}
                 label="Property's floor level"
@@ -261,13 +261,13 @@ const PropertyForm: FC<PropertyFormProps> = ({
             className="w-full my-[24px]"
           >
             <p className="text-lg">Select an agreement type:</p>
-            <div className="flex items-center justify-center gap-[16px] mt-[24px]">
+            <div className="flex flex-wrap items-center justify-center gap-[16px] mt-[24px]">
               {AGREEMENT_TYPE_OPTIONS.map((option) => (
                 <OptionCard
                   option={option}
                   key={option.value}
                   selected={option.value === formValues.agreementType}
-                  className="text-xl w-[25%]"
+                  className="text-xl w-full md:w-[47.5%] lg:w-[25%]"
                   onSelect={onChange}
                 />
               ))}
@@ -292,13 +292,13 @@ const PropertyForm: FC<PropertyFormProps> = ({
             className="w-full mb-[24px]"
           >
             <p className="text-lg">Select a type of your property:</p>
-            <div className="flex justify-center gap-[16px] mt-[24px]">
+            <div className="flex flex-wrap justify-center gap-[16px] mt-[24px]">
               {PROPERTY_TYPE_OPTIONS.map((option) => (
                 <OptionCard
                   option={option}
                   key={option.value}
                   selected={option.value === formValues.type}
-                  className="text-xl w-[20%]"
+                  className="text-xl w-[47.5%] lg:w-[20%]"
                   onSelect={onChange}
                 />
               ))}

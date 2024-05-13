@@ -8,7 +8,6 @@ const GalleryUpload = () => {
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    if (uploadedImages.length === 10) return;
     if (e.target.files?.length) {
       setUploadedImages((images) => [...images, e.target.files![0]]);
     }
@@ -29,7 +28,7 @@ const GalleryUpload = () => {
         x: 0,
       }}
       transition={{ ease: "easeOut", duration: 1 }}
-      className="mt-[24px]"
+      className="mt-[24px] flex-wrap"
     >
       <p className="text-lg">Upload images of a property. Minimum 3 images required.</p>
       <div className="w-full my-[24px] flex items-center gap-[16px] flex-wrap">
@@ -41,7 +40,7 @@ const GalleryUpload = () => {
           />
         ))}
         {uploadedImages.length < 10 ? (
-          <div className="w-[calc(20%-17.5px)] h-[180px] text-secondary-light dark:text-secondary-dark flex flex-col items-center justify-center relative border-[2px] border-dashed border-border-light dark:border-border-dark rounded-[10px]">
+          <div className="w-[47.5%] md:w-[31.5%] lg:w-[19%] h-[180px] text-secondary-light dark:text-secondary-dark flex flex-col items-center justify-center relative border-[2px] border-dashed border-border-light dark:border-border-dark rounded-[10px]">
             <input
               type="file"
               className="opacity-0 cursor-pointer absolute top-0 left-0 w-full h-full"
