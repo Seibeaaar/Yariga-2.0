@@ -66,7 +66,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto px-[24px] lg:px-[32px]">
+    <form onSubmit={handleSubmit(onSubmit)}>
       <GalleryUpload />
       <motion.div
         initial={{

@@ -19,7 +19,7 @@ export const PROPERTY_VALIDATION_SCHEMA = yup.object({
   description: yup
     .string()
     .required("Property description required")
-    .min(100, "Description must be longer than 100 characters"),
+    .min(250, "Description must be longer than 250 characters"),
   area: yup
     .number()
     .required("Area of a property required")

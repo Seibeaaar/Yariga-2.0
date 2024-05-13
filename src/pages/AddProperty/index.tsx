@@ -13,7 +13,7 @@ const AddPropertyScreen = () => {
   return (
     <>
       <Loader showLoader={addPropertyPending} />
-      <ScreenBackground className="py-[24px]">
+      <ScreenBackground className="py-[24px] px-[24px] lg:px-[32px]">
         <motion.div
           initial={{
             opacity: 0,
@@ -24,7 +24,6 @@ const AddPropertyScreen = () => {
             y: 0,
           }}
           transition={{ ease: "easeOut", duration: 1 }}
-          className="w-screen"
         >
           <h1 className="text-center font-bold text-4xl">
             Before you go to explore Yariga
