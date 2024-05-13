@@ -14,27 +14,27 @@ import { PROPERTY_FACILITY, PROPERTY_TYPE } from "@/types/property";
 
 export const PROPERTY_FACILITIES_OPTIONS = [
   {
-    icon: Kitchen,
+    icon: <Kitchen fontSize="inherit" />,
     label: "Kitchen",
     value: PROPERTY_FACILITY.Kitchen,
   },
   {
-    icon: Balcony,
+    icon: <Balcony fontSize="inherit" />,
     label: "Balcony",
     value: PROPERTY_FACILITY.Balcony,
   },
   {
-    icon: LocalParking,
+    icon: <LocalParking fontSize="inherit" />,
     label: "Parking",
     value: PROPERTY_FACILITY.Parking,
   },
   {
-    icon: Wifi,
+    icon: <Wifi fontSize="inherit" />,
     label: "Wi-Fi",
     value: PROPERTY_FACILITY.WiFI,
   },
   {
-    icon: SmokingRooms,
+    icon: <SmokingRooms fontSize="inherit" />,
     label: "Smoking",
     value: PROPERTY_FACILITY.Smoking,
   },
@@ -70,27 +70,27 @@ export const PROPERTY_FACILITIES = [
 export const PROPERTY_TYPE_OPTIONS = [
   {
     label: "House",
-    icon: <Home fontSize="large" />,
+    icon: <Home fontSize="inherit" />,
     value: PROPERTY_TYPE.House,
   },
   {
     label: "Apartment",
-    icon: <Apartment fontSize="large" />,
+    icon: <Apartment fontSize="inherit" />,
     value: PROPERTY_TYPE.Apartment,
   },
   {
     label: "Commercial",
-    icon: <Factory fontSize="large" />,
+    icon: <Factory fontSize="inherit" />,
     value: PROPERTY_TYPE.Commercial,
   },
   {
     label: "Hotel",
-    icon: <Hotel fontSize="large" />,
+    icon: <Hotel fontSize="inherit" />,
     value: PROPERTY_TYPE.Hotel,
   },
   {
     label: "Garage",
-    icon: <Warehouse fontSize="large" />,
+    icon: <Warehouse fontSize="inherit" />,
     value: PROPERTY_TYPE.Garage,
   },
 ];

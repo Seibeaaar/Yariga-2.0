@@ -23,7 +23,7 @@ const OptionCard: FC<OptionCardProps> = ({
       className={`rounded-[16px] border-[1px] hover:text-white h-[160px] cursor-pointer p-[16px] transition-all flex flex-col items-center justify-center ${conditionalStyles} ${className}`}
     >
       {option.icon}
-      <p className="text-center text-inherit mt-[16px]">{option.label}</p>
+      <p className="text-center text-xl mt-[16px]">{option.label}</p>
     </div>
   );
 };

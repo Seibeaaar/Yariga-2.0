@@ -1,12 +1,5 @@
-import { SvgIconTypeMap } from "@mui/material";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { Option } from "@/types/common";
 import { FC } from "react";
-
-export type Option = {
-  label: string;
-  value: string;
-  icon: OverridableComponent<SvgIconTypeMap<object, "svg">> & { muiName: string };
-};
 
 type ToggleOptionProps = {
   option: Option;
@@ -15,13 +8,12 @@ type ToggleOptionProps = {
 };
 
 const ToggleOption: FC<ToggleOptionProps> = ({ option, onClick, selected }) => {
-  const Icon = option.icon;
   return (
     <div
       onClick={() => onClick(option.value)}
-      className={`flex py-[12px] px-[16px] hover:text-white rounded-[24px] items-center gap-[16px] ${selected ? "bg-primary text-white" : "bg-border-light dark:bg-border-dark"} cursor-pointer hover:bg-primary hover:dark:bg-primary transition-all`}
+      className={`flex py-[12px] px-[24px] hover:text-white text-2xl rounded-[36px] items-center gap-[16px] ${selected ? "bg-primary text-white" : "bg-border-light dark:bg-border-dark"} cursor-pointer hover:bg-primary hover:dark:bg-primary transition-all`}
     >
-      <Icon />
+      {option.icon}
       <p className="font-semibold text-lg text-inherit">{option.label}</p>
     </div>
   );

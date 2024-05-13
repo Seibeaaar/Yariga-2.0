@@ -26,7 +26,13 @@ import {
   PROPERTY_TYPE_OPTIONS,
   PROPERTY_FACILITIES_OPTIONS,
 } from "@/constants/property";
-import { BED_LIMIT, AREA_LIMIT, PRICE_LIMIT, FLOOR_LIMIT, ROOM_LIMIT } from "@/types/property";
+import {
+  BED_LIMIT,
+  AREA_LIMIT,
+  PRICE_LIMIT,
+  FLOOR_LIMIT,
+  ROOM_LIMIT,
+} from "@/types/property";
 import Button from "./Button";
 import { PROPERTY_TYPE, Property, PropertyData } from "@/types/property";
 import { AGREEMENT_TYPE } from "@/types/agreement";
@@ -37,20 +43,18 @@ type PropertyFormProps = {
   defaultValues?: Property;
 };
 
-const PropertyForm: FC<PropertyFormProps> = ({
-  submitText
-}) => {
+const PropertyForm: FC<PropertyFormProps> = ({ submitText }) => {
   const {
     control,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
   } = useForm({
     defaultValues: {
       title: "",
       description: "",
       facilities: [],
       type: PROPERTY_TYPE.House,
-      agreementType: AGREEMENT_TYPE.Sale
+      agreementType: AGREEMENT_TYPE.Sale,
     },
     resolver: yupResolver(PROPERTY_VALIDATION_SCHEMA),
   });
@@ -63,7 +67,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
 
   const onSubmit = (data: PropertyData) => {
     dispatch(addProperty(data));
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -119,7 +123,10 @@ const PropertyForm: FC<PropertyFormProps> = ({
             }}
             transition={{ ease: "easeOut", duration: 1, delay: 0.5 }}
           >
-            <LocationPicker control={control} error={errors.location?.message} />
+            <LocationPicker
+              control={control}
+              error={errors.location?.message}
+            />
           </motion.div>
         )}
       />
@@ -267,7 +274,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
                   option={option}
                   key={option.value}
                   selected={option.value === formValues.agreementType}
-                  className="text-xl w-full md:w-[47.5%] lg:w-[25%]"
+                  className="text-4xl w-full md:w-[47.5%] lg:w-[25%]"
                   onSelect={onChange}
                 />
               ))}
@@ -292,13 +299,13 @@ const PropertyForm: FC<PropertyFormProps> = ({
             className="w-full mb-[24px]"
           >
             <p className="text-lg">Select a type of your property:</p>
-            <div className="flex flex-wrap justify-center gap-[16px] mt-[24px]">
+            <div className="flex flex-wrap justify-between gap-y-[16px] mt-[24px]">
               {PROPERTY_TYPE_OPTIONS.map((option) => (
                 <OptionCard
                   option={option}
                   key={option.value}
                   selected={option.value === formValues.type}
-                  className="text-xl w-[47.5%] lg:w-[20%]"
+                  className="text-4xl w-[47.5%] lg:w-[19%]"
                   onSelect={onChange}
                 />
               ))}
@@ -326,10 +333,7 @@ const PropertyForm: FC<PropertyFormProps> = ({
         />
       </motion.div>
       <motion.div>
-        <Button 
-          text={submitText}
-          type="submit"
-        />
+        <Button text={submitText} type="submit" />
       </motion.div>
     </form>
   );

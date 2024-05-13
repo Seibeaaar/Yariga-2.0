@@ -14,12 +14,12 @@ export const AGREEMENT_STATUSES = [
 export const AGREEMENT_TYPE_OPTIONS = [
   {
     label: "Sale",
-    icon: <Sell fontSize="large" />,
+    icon: <Sell fontSize="inherit" />,
     value: AGREEMENT_TYPE.Sale,
   },
   {
     label: "Rent",
-    icon: <CalendarMonth fontSize="large" />,
+    icon: <CalendarMonth fontSize="inherit" />,
     value: AGREEMENT_TYPE.Rent,
   },
 ];
