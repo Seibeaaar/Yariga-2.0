@@ -27,7 +27,7 @@ import {
   PROPERTY_TYPE_OPTIONS,
 } from "@/constants/property";
 import { AGREEMENT_TYPE_OPTIONS } from "@/constants/agreement";
-import Selectable from "./Selectable";
+import Selectable from "@/components/Selectable";
 import { AppDispatch } from "@/redux";
 
 const ClientPreferencesForm = () => {

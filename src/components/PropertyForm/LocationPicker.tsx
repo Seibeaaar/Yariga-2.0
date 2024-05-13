@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import Input from "./Input";
+import Input from "../Input";
 import { Room } from "@mui/icons-material";
 import { Control, Controller } from "react-hook-form";
 

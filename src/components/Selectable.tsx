@@ -1,7 +1,7 @@
-import { Option } from "@/components/ToggleOption";
 import { FC } from "react";
 import { Controller, Control } from "react-hook-form";
 import ToggleOption from "@/components/ToggleOption";
+import { Option } from "@/types/common";
 
 type SelectableProps = {
   control: Control<any>;
