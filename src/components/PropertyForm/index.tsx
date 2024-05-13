@@ -16,12 +16,12 @@ import { addProperty } from "@/redux/actions/property";
 import { AppDispatch } from "@/redux";
 
 import { PROPERTY_VALIDATION_SCHEMA } from "@/schemas/property";
-import Input from "./Input";
-import Textarea from "./Textarea";
+import Input from "../Input";
+import Textarea from "../Textarea";
 import LocationPicker from "./LocationPicker";
-import Selectable from "./Selectable";
+import Selectable from "../Selectable";
 import { AGREEMENT_TYPE_OPTIONS } from "@/constants/agreement";
-import OptionCard from "./OptionsCard";
+import OptionCard from "../OptionsCard";
 import {
   PROPERTY_TYPE_OPTIONS,
   PROPERTY_FACILITIES_OPTIONS,
@@ -33,7 +33,7 @@ import {
   FLOOR_LIMIT,
   ROOM_LIMIT,
 } from "@/types/property";
-import Button from "./Button";
+import Button from "../Button";
 import { PROPERTY_TYPE, Property, PropertyData } from "@/types/property";
 import { AGREEMENT_TYPE } from "@/types/agreement";
 
