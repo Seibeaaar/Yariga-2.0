@@ -7,6 +7,7 @@ import ProfileCompleteScreen from "@/pages/ProfileComplete";
 import ProfilePictureScreen from "@/pages/ProfilePicture";
 import ClientPreferencesScreen from "@/pages/ClientPreferences";
 import AddPropertyScreen from "@/pages/AddProperty";
+import Dashboard from "@/pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
     path: "/add-property",
     element: <AddPropertyScreen />,
   },
+  {
+    path: '/dashboard',
+    element: <Dashboard />
+  }
 ]);
 
 export default router;
