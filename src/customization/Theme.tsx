@@ -1,3 +1,4 @@
+import { APP_THEME } from "@/types/customization";
 import {
     createContext,
     useState,
@@ -7,12 +8,11 @@ import {
     ReactNode,
   } from "react";
   
-  export type AppTheme = "light" | "dark";
-  
   export const ThemeContext = createContext({
-    theme: "light",
+    theme: APP_THEME.Light,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    changeTheme: (_value: AppTheme) => {},
+    changeTheme: (_value: APP_THEME) => {},
+    isDarkTheme: false
   });
   
   type ThemeContextProps = {
@@ -20,7 +20,7 @@ import {
   };
   
   const ThemeContextProvider: FC<ThemeContextProps> = ({ children }) => {
-    const [theme, setTheme] = useState<AppTheme>("light");
+    const [theme, setTheme] = useState<APP_THEME>(APP_THEME.Light);
   
     const updateTailwindAppearance = (isDark: boolean) => {
       if (isDark) {
@@ -33,25 +33,25 @@ import {
     useEffect(() => {
       const themeInStorage = localStorage.getItem("theme");
       if (themeInStorage) {
-        setTheme(themeInStorage as AppTheme);
+        setTheme(themeInStorage as APP_THEME);
         updateTailwindAppearance(themeInStorage === "dark");
       } else {
         const mq = window.matchMedia("(prefers-color-scheme: dark)");
-        setTheme(mq.matches ? "dark" : "light");
+        setTheme(mq.matches ? APP_THEME.Dark : APP_THEME.Light);
         updateTailwindAppearance(mq.matches);
         const mqListener = (evt: MediaQueryListEvent) => {
           updateTailwindAppearance(evt.matches);
-          setTheme(evt.matches ? "dark" : "light");
+          setTheme(evt.matches ? APP_THEME.Dark : APP_THEME.Light);
         };
         mq.addEventListener("change", mqListener);
         return () => mq.removeEventListener("change", mqListener);
       }
     }, []);
   
-    const updateAppTheme = useCallback((value: AppTheme) => {
+    const updateAppTheme = useCallback((value: APP_THEME) => {
       setTheme(value);
       localStorage.setItem("theme", value);
-      updateTailwindAppearance(value === "dark");
+      updateTailwindAppearance(value === APP_THEME.Dark);
     }, []);
   
     return (
@@ -59,6 +59,7 @@ import {
         value={{
           theme,
           changeTheme: updateAppTheme,
+          isDarkTheme: theme === APP_THEME.Dark
         }}
       >
         {children}

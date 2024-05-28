@@ -1,10 +1,10 @@
-import Navbar from "@/components/Navbar";
+import ScreenContainer from "@/components/ScreenContainer";
 
 const Dashboard = () => {
     return (
-        <>
-            <Navbar />
-        </>
+        <ScreenContainer>
+            <h1>Dashboard</h1>
+        </ScreenContainer>
     )
 };
 
