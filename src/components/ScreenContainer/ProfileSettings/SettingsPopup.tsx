@@ -41,7 +41,7 @@ const SettingsPopup: FC<SettingsPopupProps> = ({ visible }) => {
 
   return (
     <div
-      className={`rounded-[10px] flex flex-col justify-between fixed top-[72px] w-[192px] right-[20px] bg-white dark:bg-black transition-all overflow-hidden p-[10px] ${visible ? "opacity-1" : "opacity-0"}`}
+      className={`rounded-[10px] flex flex-col justify-between fixed top-[72px] w-[192px] right-[20px] bg-white dark:bg-black transition-all overflow-hidden px-[10px] ${visible ? "h-fit-content py-[10px]" : "h-0 py-0"}`}
     >
       {SETTINGS_ACTIONS.map((action) => {
         const Icon = action.icon;

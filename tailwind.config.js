@@ -33,6 +33,7 @@ export default {
         danger: "#F45252",
         "border-dark": "#272B30",
         "border-light": "#E4E4E4",
+        blue: "#006CE4",
       },
     },
   },
