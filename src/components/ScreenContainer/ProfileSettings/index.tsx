@@ -5,7 +5,7 @@ import { Avatar } from "@mui/material";
 import { RootState } from "@/redux";
 import { getFullName, getInitials, getRoleTitle } from "@/utils/profile";
 import SettingsPopup from "./SettingsPopup";
-import NotificationMenu from "./NotificationMenu";
+import NotificationMenu from "./Notification/Menu";
 
 import NotificationIcon from "@/assets/icons/Notification.svg?react";
 

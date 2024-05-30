@@ -1,27 +1,32 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
-import NotificationItem from "./NotificationItem";
-import NotificationLoader from "./NotificationLoader";
+import NotificationItem from "./Item";
+import NotificationLoader from "./Loader";
 
 type NotificationMenuProps = {
   visible: boolean;
 };
 
 const NotificationMenu: FC<NotificationMenuProps> = ({ visible }) => {
-  const { notifications, getNotificationsPending, getNotificationsError } = useSelector(
-    (state: RootState) => state.notifications,
-  );
+  const { notifications, getNotificationsPending, getNotificationsError } =
+    useSelector((state: RootState) => state.notifications);
 
   const renderContent = () => {
     if (getNotificationsPending) {
-      return <NotificationLoader />
+      return <NotificationLoader />;
     } else if (notifications.length === 0 || getNotificationsError) {
-      return <h4 className="text-xl font-bold text-secondary-light dark:text-secondary-dark text-center">No notifications for you</h4>;
+      return (
+        <h4 className="text-xl font-bold text-secondary-light dark:text-secondary-dark text-center">
+          No notifications for you
+        </h4>
+      );
     } else {
-      return notifications.map(n => <NotificationItem notification={n} key={n.id} />)
+      return notifications.map((n) => (
+        <NotificationItem notification={n} key={n.id} />
+      ));
     }
-  }
+  };
 
   return (
     <div
