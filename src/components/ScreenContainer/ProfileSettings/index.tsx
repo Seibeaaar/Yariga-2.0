@@ -12,7 +12,7 @@ import NotificationIcon from "@/assets/icons/Notification.svg?react";
 const ProfileSettings = () => {
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [showNotifications, setShowNotifications] = useState<boolean>(false);
-  const { profile } = useSelector((state: RootState) => state.profile);
+  const { profile: { profile } } = useSelector((state: RootState) => state);
 
   useEffect(() => {
     const clickListener = () => {

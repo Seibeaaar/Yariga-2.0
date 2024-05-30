@@ -17,10 +17,11 @@ const NotificationItem: FC<NotificationProps> = ({ notification }) => {
 
   return (
     <div
-      className="flex gap-[10px] pt-[20px] cursor-pointer py-[10px] border-b pb-[20px] border-border-light dark:border-border-dark transition-all hover:bg-border-light"
+      className="flex gap-[10px] pt-[20px] cursor-pointer py-[10px] border-b pb-[20px] border-border-light dark:border-border-dark transition-all hover:bg-border-light dark:hover:bg-border-dark"
     >
       <div
-        className={`bg-${background} h-[38px] w-[38px] rounded-[5px] flex items-center justify-center`}
+        className="h-[38px] w-[38px] rounded-[5px] flex items-center justify-center"
+        style={{ background }}
       >
         <Icon fill="white" width={18} height={18} />
       </div>
