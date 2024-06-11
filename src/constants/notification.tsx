@@ -12,12 +12,12 @@ export const NOTIFICATION_STYLING_BY_CONFIG = {
     },
     [NOTIFICATION_TYPE.AgreementUpdate]: {
         icon: CalendarIcon,
-        text: "Agreement was updated",
+        text: "Agreement updated",
         background: COLORS.warning
     },
     [NOTIFICATION_TYPE.AgreementSuccess]: {
         icon: CalendarIcon,
-        text: "Agreement accepted. Congrats!",
+        text: "Agreement accepted",
         background: COLORS.success
     },
     [NOTIFICATION_TYPE.AgreementCancel]: {

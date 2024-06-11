@@ -1,11 +1,9 @@
 import ScreenContainer from "@/components/ScreenContainer";
 
-const Dashboard = () => {
-    return (
-        <ScreenContainer>
-            <h1>Dashboard</h1>
-        </ScreenContainer>
-    )
-};
+const Dashboard = () => (
+    <ScreenContainer pageTitle="Dashboard">
+        Dummy for now
+    </ScreenContainer>
+);
 
 export default Dashboard;
