@@ -9,12 +9,12 @@ export const NAV_LINKS = [
   {
     icon: DashboardIcon,
     text: "Dashboard",
-    route: "/",
+    route: "/dashboard",
   },
   {
     icon: UnionIcon,
     text: "Property",
-    route: "/property",
+    route: "/properties",
   },
   {
     icon: StarIcon,

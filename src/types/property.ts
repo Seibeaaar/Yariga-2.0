@@ -98,4 +98,9 @@ export type PropertyData = {
 
 export type Property = PropertyData & {
   id: string;
+};
+
+export enum PROPERTY_FILTERS_USE {
+  FILTER = "filter",
+  PREFERENCES = "preferences",
 }

@@ -1,8 +1,14 @@
-import { PropertyData } from "@/types/property";
+import { PropertyData, PropertyFilters } from "@/types/property";
 
-export const ADD_PROPERTY = 'ADD_PROPERTY';
+export const ADD_PROPERTY = "ADD_PROPERTY";
+export const FILTER_PROPERTY = "FILTER_PROPERTY";
 
 export const addProperty = (payload: PropertyData) => ({
-    type: ADD_PROPERTY,
-    payload
+  type: ADD_PROPERTY,
+  payload,
+});
+
+export const filterProperty = (payload: PropertyFilters) => ({
+  type: FILTER_PROPERTY,
+  payload,
 });
