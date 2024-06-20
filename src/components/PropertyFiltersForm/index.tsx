@@ -68,7 +68,7 @@ const PropertyFiltersForm: FC<PropertyFiltersProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto px-[24px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="px-[24px] bg-bg-light dark:bg-bg-dark text-primary-light dark:text-primary-dark">
       <motion.div
         initial={{
           opacity: 0,

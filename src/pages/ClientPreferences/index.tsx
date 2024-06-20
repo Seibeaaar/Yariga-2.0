@@ -1,15 +1,31 @@
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import ScreenBackground from "@/components/Background";
-import ClientPreferencesForm from "./components/PreferencesForm";
+import Button from "@/components/Button";
 import { RootState } from "@/redux";
 import Loader from "@/components/Loader";
 import Tooltip from "@/components/Tooltip";
+import PropertyFiltersForm from "@/components/PropertyFiltersForm";
+import { PROPERTY_FILTERS_USE } from "@/types/property";
 
 const ClientPreferencesScreen = () => {
   const { setPreferencesPending, setPreferencesError } = useSelector(
     (state: RootState) => state.profile,
   );
+
+  const preferencesSubmit = (isDisabled: boolean) => {
+    return (
+      <>
+        <Button
+          disabled={isDisabled}
+          text="Add your preferences"
+          className="mb-[16px]"
+          type="submit"
+        />
+        <Button variant="text" text="Skip for now" />
+      </>
+    );
+  };
   return (
     <>
       <Loader showLoader={setPreferencesPending} />
@@ -42,7 +58,12 @@ const ClientPreferencesScreen = () => {
             platform.
           </h3>
         </motion.div>
-        <ClientPreferencesForm />
+        <div className="mx-auto px-[24px] lg:w-3/4 mt-[48px]">
+          <PropertyFiltersForm
+            submitComponent={preferencesSubmit}
+            mode={PROPERTY_FILTERS_USE.PREFERENCES}
+          />
+        </div>
       </ScreenBackground>
     </>
   );
