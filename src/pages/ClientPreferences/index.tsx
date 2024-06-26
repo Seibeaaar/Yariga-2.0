@@ -60,6 +60,7 @@ const ClientPreferencesScreen = () => {
         </motion.div>
         <div className="mx-auto px-[24px] lg:w-3/4 mt-[48px]">
           <PropertyFiltersForm
+            animated
             submitComponent={preferencesSubmit}
             mode={PROPERTY_FILTERS_USE.PREFERENCES}
           />

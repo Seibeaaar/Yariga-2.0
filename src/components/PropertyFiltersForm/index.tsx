@@ -1,6 +1,5 @@
 import { useForm, useWatch } from "react-hook-form";
 import { FC, ReactNode } from "react";
-import { motion } from "framer-motion";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   AREA_LIMIT,
@@ -30,16 +29,19 @@ import {
 } from "@/constants/property";
 import { AGREEMENT_TYPE_OPTIONS } from "@/constants/agreement";
 import Selectable from "@/components/Selectable";
+import Block from "../Block";
 import { AppDispatch } from "@/redux";
 
 type PropertyFiltersProps = {
   mode: PROPERTY_FILTERS_USE;
   submitComponent: (isDisabled: boolean) => ReactNode;
+  animated?: boolean;
 };
 
 const PropertyFiltersForm: FC<PropertyFiltersProps> = ({
   submitComponent,
   mode,
+  animated = false
 }) => {
   const {
     control,
@@ -65,20 +67,11 @@ const PropertyFiltersForm: FC<PropertyFiltersProps> = ({
         ? filterProperty
         : setClientPreferences;
     dispatch(callback(data));
-  };
+  };  
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="px-[24px] bg-bg-light dark:bg-bg-dark text-primary-light dark:text-primary-dark">
-      <motion.div
-        initial={{
-          opacity: 0,
-          x: -100,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-        }}
-        transition={{ duration: 1 }}
+    <form onSubmit={handleSubmit(onSubmit)} className="px-[24px] bg-light dark:bg-black text-primary-light dark:text-primary-dark">
+      <Block animated={animated}
         className="flex w-full items-center flex-wrap justify-between mb-[9px]"
       >
         <RangeRow
@@ -147,18 +140,8 @@ const PropertyFiltersForm: FC<PropertyFiltersProps> = ({
           highestError={errors?.topFloorLevel?.message}
           lowestError={errors?.bottomFloorLevel?.message}
         />
-      </motion.div>
-      <motion.div
-        initial={{
-          opacity: 0,
-          x: -100,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-        }}
-        transition={{ duration: 1, delay: 0.25 }}
-      >
+      </Block>
+      <Block animated={animated}>
         <Selectable
           options={PROPERTY_TYPE_OPTIONS}
           control={control}
@@ -166,18 +149,8 @@ const PropertyFiltersForm: FC<PropertyFiltersProps> = ({
           values={formValues.propertyType}
           title="Select types of property you're interested in"
         />
-      </motion.div>
-      <motion.div
-        initial={{
-          opacity: 0,
-          x: -100,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-        }}
-        transition={{ duration: 1, delay: 0.5 }}
-      >
+      </Block>
+      <Block animated={animated}>
         <Selectable
           options={AGREEMENT_TYPE_OPTIONS}
           control={control}
@@ -185,18 +158,8 @@ const PropertyFiltersForm: FC<PropertyFiltersProps> = ({
           values={formValues.agreementType}
           title="Select types of agreements you're looking for"
         />
-      </motion.div>
-      <motion.div
-        initial={{
-          opacity: 0,
-          x: -100,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-        }}
-        transition={{ duration: 1, delay: 0.75 }}
-      >
+      </Block>
+      <Block animated={animated}>
         <Selectable
           options={PROPERTY_FACILITIES_OPTIONS}
           control={control}
@@ -204,20 +167,10 @@ const PropertyFiltersForm: FC<PropertyFiltersProps> = ({
           values={formValues.facilities}
           title="Select facilities you would like to see"
         />
-      </motion.div>
-      <motion.div
-        initial={{
-          opacity: 0,
-          x: -100,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-        }}
-        transition={{ duration: 1, delay: 1 }}
-      >
+      </Block>
+      <Block animated={animated}>
         {submitComponent(isSubmitDisabled)}
-      </motion.div>
+      </Block>
     </form>
   );
 };

@@ -36,7 +36,7 @@ const PropertyFiltersModal = () => {
         <p className="text-xs text-black dark:text-white">Filters</p>
       </div>
       <Dialog open={modalOpen} maxWidth="md" onClose={closeModal}>
-        <div className="bg-white dark:bg-bg-dark w-[800px] h-screen py-[24px]">
+        <div className="bg-white dark:bg-black w-[800px] h-screen py-[24px]">
           <h3 className="ml-[24px] mb-[24px] text-2xl text-primary-light dark:text-primary-dark font-bold">
             Set up your search criterias:
           </h3>
