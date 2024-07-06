@@ -98,6 +98,10 @@ export type PropertyData = {
 
 export type Property = PropertyData & {
   id: string;
+  status: PROPERTY_STATUS;
+  agreementType: AGREEMENT_TYPE;
+  owner: string;
+  photos: string[];
 };
 
 export enum PROPERTY_FILTERS_USE {

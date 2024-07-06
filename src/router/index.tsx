@@ -44,13 +44,17 @@ const router = createBrowserRouter([
     element: <AddPropertyScreen />,
   },
   {
-    path: '/dashboard',
-    element: <Dashboard />
+    path: "/dashboard",
+    element: <Dashboard />,
   },
   {
-    path: '/properties',
-    element: <PropertyListScreen />
-  }
+    path: "/properties",
+    element: <PropertyListScreen />,
+  },
+  {
+    path: "/property/:name",
+    element: <Dashboard />,
+  },
 ]);
 
 export default router;

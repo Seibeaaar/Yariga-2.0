@@ -4,6 +4,7 @@ import { RootState } from "@/redux";
 
 import Widget from "@/components/Widget";
 import Tooltip from "@/components/Tooltip";
+import PropertyItem from "@/components/PropertyItem";
 
 const PropertyItemsList = () => {
   const { searchResults, searchPending, searchError, initialSearch } =
@@ -14,7 +15,17 @@ const PropertyItemsList = () => {
       case !!searchPending:
         return <CircularProgress />;
       case searchResults.length > 0:
-          return <p>Properties</p>;
+        return (
+          <div className="w-full flex flex-wrap">
+            {searchResults.map((property) => (
+              <>
+                <PropertyItem key={property.id} property={property} />
+                <PropertyItem key={property.id} property={property} />
+                <PropertyItem key={property.id} property={property} />
+              </>
+            ))}
+          </div>
+        );
       case !!initialSearch:
         return (
           <p className="text-center text-2xl text-secondary-light dark:text-secondary-dark font-bold">
