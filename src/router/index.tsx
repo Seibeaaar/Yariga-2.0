@@ -8,7 +8,7 @@ import ProfilePictureScreen from "@/pages/ProfilePicture";
 import ClientPreferencesScreen from "@/pages/ClientPreferences";
 import AddPropertyScreen from "@/pages/AddProperty";
 import Dashboard from "@/pages/Dashboard";
-import PropertyListScreen from "@/pages/PropertyList";
+import PropertyListScreen from "@/pages/Properties";
 
 const router = createBrowserRouter([
   {

@@ -8,6 +8,7 @@ type PropertyReducer = {
   searchResults: Property[];
   searchPending: boolean;
   searchError: string | null;
+  initialSearch: boolean;
 };
 
 const initialState: PropertyReducer = {
@@ -17,6 +18,7 @@ const initialState: PropertyReducer = {
   searchResults: [],
   searchError: null,
   searchPending: false,
+  initialSearch: true
 };
 
 export const propertySlice = createSlice({
@@ -41,6 +43,9 @@ export const propertySlice = createSlice({
     setSearchError: (state, { payload }) => {
       state.searchError = payload;
     },
+    setInitialSearch: (state, { payload }) => {
+      state.initialSearch = payload;
+    }
   },
 });
 
@@ -50,7 +55,8 @@ export const {
   setAddPropertyPending,
   setSearchResults,
   setSearchError,
-  setSearchPending
+  setSearchPending,
+  setInitialSearch
 } = propertySlice.actions;
 
 export default propertySlice.reducer;

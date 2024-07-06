@@ -16,16 +16,16 @@ const ScreenContainer: FC<ScreenContainerProps> = ({
   return (
     <main className="flex">
       <Navbar />
-      <section className="bg-bg-light dark:bg-bg-dark flex-grow text-primary-light dark:text-primary-dark">
+      <div className="bg-bg-light dark:bg-bg-dark w-full flex flex-col text-primary-light dark:text-primary-dark">
         <Header />
-        <div className="p-[24px]">
+        <div className="p-[24px] flex flex-col flex-grow">
           <div className="flex items-center justify-between">
             <h1 className="font-bold text-2xl">{pageTitle}</h1>
             {actionItem}
           </div>
           {children}
         </div>
-      </section>
+      </div>
     </main>
   );
 };

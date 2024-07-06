@@ -1,5 +1,5 @@
 import { takeLatest, put, call } from "redux-saga/effects";
-import { addPropertyRequest, filterPropertiesRequest } from "@/api/property";
+import { addPropertyRequest, filterPropertiesRequest, searchPropertyRequest } from "@/api/property";
 import {
   setAddPropertyError,
   setAddPropertyPending,
@@ -9,7 +9,7 @@ import {
   setSearchPending,
 } from "../reducers/property";
 import { Property, PropertyData, PropertyFilters } from "@/types/property";
-import { ADD_PROPERTY, FILTER_PROPERTY } from "../actions/property";
+import { ADD_PROPERTY, FILTER_PROPERTY, SEARCH_PROPERTY } from "../actions/property";
 
 import { generateErrorMesaage } from "@/utils/redux";
 import { PayloadAction } from "@reduxjs/toolkit";
@@ -46,7 +46,23 @@ function* filterPropertySaga(
   }
 }
 
+function* searchPropertySaga(
+  action: PayloadAction<string>,
+): Generator<unknown, void, Property[]> {
+  try {
+    yield put(setSearchError(null));
+    yield put(setSearchPending(true));
+    const results = yield call(searchPropertyRequest, action.payload);
+    yield put(setSearchResults(results));
+  } catch (e) {
+    yield put(setSearchError(generateErrorMesaage(e)));
+  } finally {
+    yield put(setSearchPending(false));
+  }
+}
+
 export default function* () {
   yield takeLatest(ADD_PROPERTY, addPropertySaga);
   yield takeLatest(FILTER_PROPERTY, filterPropertySaga);
+  yield takeLatest(SEARCH_PROPERTY, searchPropertySaga);
 }
