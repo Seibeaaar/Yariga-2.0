@@ -100,8 +100,18 @@ export type PropertyData = {
 
 export type UpdatePropertyPayload = {
   id: string;
-  data: PropertyData
-}
+  data: PropertyData;
+};
+
+export type SearchPropertyPayload = {
+  query: string;
+  page: number;
+};
+
+export type FilterPropertyPayload = {
+  filters: PropertyFilters;
+  page: number;
+};
 
 export type Property = PropertyData & {
   id: string;
@@ -119,10 +129,10 @@ export type PropertyPaginatedResponse = {
   total: number;
   properties: Property[];
   pages: number;
-}
+};
 
 export type PaginatedMetadata = {
-  total: number,
-  page: number,
-  pages: number
-}
+  total: number;
+  page: number;
+  pages: number;
+};

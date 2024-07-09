@@ -1,6 +1,7 @@
 import {
+  FilterPropertyPayload,
   PropertyData,
-  PropertyFilters,
+  SearchPropertyPayload,
   UpdatePropertyPayload,
 } from "@/types/property";
 
@@ -18,18 +19,14 @@ export const addProperty = (payload: PropertyData) => ({
   payload,
 });
 
-export const filterProperty = (payload: PropertyFilters) => ({
+export const filterProperty = (payload: FilterPropertyPayload) => ({
   type: FILTER_PROPERTY,
   payload,
 });
 
-export const searchProperty = (payload: string) => ({
+export const searchProperty = (payload: SearchPropertyPayload) => ({
   type: SEARCH_PROPERTY,
   payload,
-});
-
-export const getRecommendations = () => ({
-  type: GET_RECOMMENDATIONS,
 });
 
 export const getProperties = (payload: number) => ({
@@ -49,4 +46,9 @@ export const updateProperty = (payload: UpdatePropertyPayload) => ({
 export const deleteProperty = (payload: string) => ({
   type: DELETE_PROPERTY,
   payload,
+});
+
+export const getRecommendations = (payload: number) => ({
+  type: GET_RECOMMENDATIONS,
+  payload
 });
