@@ -10,7 +10,7 @@ import {
   Factory,
   Hotel,
 } from "@mui/icons-material";
-import { PROPERTY_FACILITY, PROPERTY_TYPE } from "@/types/property";
+import { PROPERTY_FACILITY, PROPERTY_TYPE, PaginatedMetadata } from "@/types/property";
 
 export const PROPERTY_FACILITIES_OPTIONS = [
   {
@@ -94,3 +94,9 @@ export const PROPERTY_TYPE_OPTIONS = [
     value: PROPERTY_TYPE.Garage,
   },
 ];
+
+export const DEFAULT_PAGINATED_METADATA: PaginatedMetadata = {
+  total: 0,
+  pages: 0,
+  page: 0
+}

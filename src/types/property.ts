@@ -94,17 +94,35 @@ export type PropertyData = {
   floorLevel?: number;
   title: string;
   description: string;
+  agreementType: AGREEMENT_TYPE;
+  photos: string[];
 };
+
+export type UpdatePropertyPayload = {
+  id: string;
+  data: PropertyData
+}
 
 export type Property = PropertyData & {
   id: string;
-  status: PROPERTY_STATUS;
-  agreementType: AGREEMENT_TYPE;
   owner: string;
-  photos: string[];
+  status: PROPERTY_STATUS;
 };
 
 export enum PROPERTY_FILTERS_USE {
   FILTER = "filter",
   PREFERENCES = "preferences",
+}
+
+export type PropertyPaginatedResponse = {
+  page: number;
+  total: number;
+  properties: Property[];
+  pages: number;
+}
+
+export type PaginatedMetadata = {
+  total: number,
+  page: number,
+  pages: number
 }

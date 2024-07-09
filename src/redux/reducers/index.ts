@@ -1,12 +1,14 @@
 import profileReducer from "./profile";
 import authReducer from "./auth";
-import propertyReducer from "./property";
 import notificationsReducer from "./notifications";
+import propertySearchReducer from './property/search';
+import propertyRecommendationsReducer from './property/recommendations';
 import { combineReducers } from "@reduxjs/toolkit";
 
 export default combineReducers({
   profile: profileReducer,
   auth: authReducer,
-  property: propertyReducer,
   notifications: notificationsReducer,
+  propertySearch: propertySearchReducer,
+  propertyRecommnedations: propertyRecommendationsReducer
 });

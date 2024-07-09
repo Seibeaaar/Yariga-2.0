@@ -21,12 +21,12 @@ const PropertyListScreen = () => {
   return (
     <ScreenContainer pageTitle="Properties" actionItem={<AddPropertyLink />}>
       <Widget className="my-[16px]">
-          <div className="flex items-center">
+          <div className="flex items-center h-[50px] pb-[16px]">
             <Searchbar />
             <PropertyFiltersModal />
           </div>
+          <PropertyItemsList />
         </Widget>
-        <PropertyItemsList />
     </ScreenContainer>
   );
 };
