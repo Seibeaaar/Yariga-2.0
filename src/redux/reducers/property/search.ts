@@ -91,6 +91,10 @@ export const propertySearchSlice = createSlice({
     setGetPropertiesPending: (state, { payload }) => {
       state.getPropertiesPending = payload;
     },
+    setDefaultSearch: (state) => {
+      state.searchQuery = '';
+      state.appliedFilters = {};
+    }
   },
 });
 
@@ -104,7 +108,8 @@ export const {
   cacheAppliedFilters,
   cacheSearchQuery,
   setGetPropertiesError,
-  setGetPropertiesPending
+  setGetPropertiesPending,
+  setDefaultSearch
 } = propertySearchSlice.actions;
 
 export default propertySearchSlice.reducer;

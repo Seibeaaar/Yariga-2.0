@@ -10,6 +10,7 @@ import {
   setGetPropertiesError,
   cacheAppliedFilters,
   cacheSearchQuery,
+  setDefaultSearch
 } from "@/redux/reducers/property/search";
 import {
   searchPropertyRequest,
@@ -24,9 +25,11 @@ import {
 } from "@/types/property";
 import { generateErrorMesaage } from "@/utils/redux";
 import {
+  CLEAR_PROPERTY_SEARCH,
   FILTER_PROPERTY,
   GET_PROPERTIES,
   SEARCH_PROPERTY,
+  getProperties,
 } from "@/redux/actions/property";
 
 function* getPropertiesSaga(
@@ -117,8 +120,14 @@ function* filterPropertiesSaga(
   }
 }
 
+function* clearPropertySearchSaga(): Generator<unknown, void, PropertyPaginatedResponse> {
+  yield put(setDefaultSearch());
+  yield call(getPropertiesSaga, getProperties(1));
+}
+
 export default function* () {
   yield takeLatest(GET_PROPERTIES, getPropertiesSaga);
   yield takeLatest(SEARCH_PROPERTY, searchPropertiesSaga);
   yield takeLatest(FILTER_PROPERTY, filterPropertiesSaga);
+  yield takeLatest(CLEAR_PROPERTY_SEARCH, clearPropertySearchSaga)
 }
