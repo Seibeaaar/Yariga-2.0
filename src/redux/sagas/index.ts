@@ -4,6 +4,7 @@ import authSagas from "./auth";
 import notificationsSaga from "./notifications";
 import ownPropertiesSaga from './property/own';
 import searchPropertiesSaga from './property/search';
+import propertyRecommendationsSaga from './property/recommendations';
 
 export default function* rootSaga() {
   yield all([
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     profileSagas(),
     notificationsSaga(),
     ownPropertiesSaga(),
-    searchPropertiesSaga()
+    searchPropertiesSaga(),
+    propertyRecommendationsSaga()
   ]);
 }
