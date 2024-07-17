@@ -4,7 +4,6 @@ import { Close } from "@mui/icons-material";
 import { KeyboardEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchProperty } from "@/redux/actions/property";
-import { setInitialSearch } from "@/redux/reducers/property";
 import { AppDispatch } from "@/redux";
 
 const Searchbar = () => {
@@ -14,8 +13,10 @@ const Searchbar = () => {
 
   const onEnterPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      dispatch(setInitialSearch(false));
-      dispatch(searchProperty(searchQuery));
+      dispatch(searchProperty({
+        query: searchQuery,
+        page: 1
+      }));
     }
   };
 
