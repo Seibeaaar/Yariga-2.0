@@ -35,7 +35,7 @@ export const searchPropertyRequest = async (
   searchQuery: string,
   page: number,
 ): Promise<PropertyPaginatedResponse> => {
-  const result = await instance.post(`/search/?q=${searchQuery}&page=${page}`);
+  const result = await instance.post(`/property/search/?q=${searchQuery}&page=${page}`);
   return result.data;
 };
 
@@ -50,7 +50,7 @@ export const filterPropertiesRequest = async (
 export const getPropertiesRequest = async (
   page: number,
 ): Promise<PropertyPaginatedResponse> => {
-  const result = await instance.get(`?page=${page}`);
+  const result = await instance.get(`/property?page=${page}`);
   return result.data;
 };
 

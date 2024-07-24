@@ -3,7 +3,7 @@ import AddPropertyLink from "./components/AddPropertyLink";
 import Widget from "@/components/Widget";
 import Searchbar from "@/components/Searchbar";
 import PropertyFiltersModal from "./components/PropertyFiltersModal";
-import PropertyItemsList from "./components/ItemsList";
+import PropertyItemsList from "./components/PropertyList";
 
 const PropertyListScreen = () => {
   return (

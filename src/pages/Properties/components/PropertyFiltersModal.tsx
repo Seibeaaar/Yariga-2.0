@@ -1,5 +1,8 @@
 /// <reference types="vite-plugin-svgr/client" />
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux";
+import { clearSearch } from "@/redux/reducers/property/search";
 import { Dialog } from "@mui/material";
 import Button from "@/components/Button";
 import PropertyFiltersForm from "@/components/PropertyFiltersForm";
@@ -9,17 +12,28 @@ import TuneIcon from "@/assets/icons/Tune.svg?react";
 
 const PropertyFiltersModal = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
 
   const closeModal = () => setModalOpen(false);
   const openModal = () => setModalOpen(true);
 
+  const resetFilters = () => {
+    closeModal();
+    dispatch(clearSearch());
+  }
+
   const filtersModalSubmit = (isDisabled: boolean) => {
     return (
-      <div className="ml-auto overflow-hidden w-[120px] pb-[14px]">
+      <div className="ml-auto w-[33%] overflow-hidden pb-[14px] flex gap-[24px]">
+        <Button 
+          text="Clear filters"
+          onClick={resetFilters}
+          variant='text'
+          type="button"
+        />
         <Button
           onClick={closeModal}
           text="Apply"
-          type="submit"
           disabled={isDisabled}
         />
       </div>

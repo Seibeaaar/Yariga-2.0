@@ -16,7 +16,7 @@ const PropertyItem: FC<PropertyItemProps> = ({ property }) => {
   return (
     <Link to={hyphenizeURL(`/property/${property.title}`)} className="flex gap-[16px] h-[125px] w-[48.5%] mb-[36px]">
       <img
-        className="rounded-[10px]"
+        className="rounded-[10px] w-[200px]"
         src={property.photos[0]}
         alt={`${property.title} photo`}
       />

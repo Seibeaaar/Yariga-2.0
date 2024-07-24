@@ -120,8 +120,7 @@ function* authViaGoogleSaga(
     const { profile, token, isNew } = yield call(authViaGoogleRequest, {
       token: action.payload,
     });
-
-    localStorage.setItem("JWT", token);
+    localStorage.setItem("token", token);
     yield put(setProfile(profile));
 
     router.navigate(!isNew ? "/dashboard" : "/email-sent");

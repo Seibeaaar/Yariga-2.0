@@ -40,7 +40,8 @@ const Pagination: FC<PaginationProps> = ({
           const isActive = activePage === i + 1;
           return (
             <div
-              className={`w-[36px] h-[36px] cursor-pointer flex items-center justify-center rounded-[5px] border border-primary hover:bg-primary ${isActive ? "bg-primary" : "bg-transparent"}`}
+              onClick={() => onPageChange(i + 1)}
+              className={`w-[36px] h-[36px] cursor-pointer flex items-center justify-center rounded-[5px] hover:bg-primary ${isActive ? "bg-primary" : "bg-transparent"}`}
             >
               <p className="text-white">{i + 1}</p>
             </div>

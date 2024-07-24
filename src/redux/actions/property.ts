@@ -13,7 +13,6 @@ export const GET_MY_PROPERTIES = "GET_MY_PROPERTIES";
 export const GET_PROPERTIES = "GET_PROPERTIES";
 export const UPDATE_PROPERTY = "UPDATE_PROPERTY";
 export const DELETE_PROPERTY = "DELETE_PROPERTY";
-export const CLEAR_PROPERTY_SEARCH = 'CLEAR_PROPERTy_SEARCH';
 
 export const addProperty = (payload: PropertyData) => ({
   type: ADD_PROPERTY,
@@ -53,7 +52,3 @@ export const getRecommendations = (payload: number) => ({
   type: GET_RECOMMENDATIONS,
   payload
 });
-
-export const clearPropertySearch = () => ({
-  type: CLEAR_PROPERTY_SEARCH
-})
