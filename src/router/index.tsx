@@ -9,6 +9,7 @@ import ClientPreferencesScreen from "@/pages/ClientPreferences";
 import AddPropertyScreen from "@/pages/AddProperty";
 import Dashboard from "@/pages/Dashboard";
 import PropertyListScreen from "@/pages/Properties";
+import PropertyInfoScreen from '@/pages/PropertyInfo';
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/property/:name",
-    element: <Dashboard />,
+    element: <PropertyInfoScreen />,
   },
 ]);
 
