@@ -3,7 +3,7 @@ import { FC, ImgHTMLAttributes } from "react";
 type BasicGalleryImageProps = ImgHTMLAttributes<HTMLImageElement>;
 
 const BasicGalleryImage: FC<BasicGalleryImageProps> = (props) => {
-  return <img {...props} className="h-full rounded-[10px] w-[75%]" />;
+  return <img {...props} className="h-[158px] rounded-[10px]" />;
 };
 
 export default BasicGalleryImage;

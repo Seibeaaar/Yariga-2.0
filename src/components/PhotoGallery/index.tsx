@@ -22,11 +22,11 @@ const PhotoGallery: FC<PhotoGalleryProps> = ({ photos }) => {
     <>
       <div
         onClick={openCarousel}
-        className="flex gap-[16px] max-h-[540px] cursor-pointer"
+        className="flex gap-[16px] h-[340px] cursor-pointer w-full"
       >
         <PrimaryGalleryImage src={photos[0]} />
         {photos.length > 1 && (
-          <div className="flex flex-col gap-[24x] h-full">
+          <div className="flex flex-col gap-[24px] flex-grow h-full">
             <BasicGalleryImage src={photos[1]} />
             {!!photos[2] && (
               <LastGalleryImage

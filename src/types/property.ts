@@ -96,6 +96,8 @@ export type PropertyData = {
   description: string;
   agreementType: AGREEMENT_TYPE;
   photos: string[];
+  rating: number;
+  votes: number;
 };
 
 export type UpdatePropertyPayload = {

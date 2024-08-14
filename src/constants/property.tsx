@@ -25,7 +25,7 @@ export const PROPERTY_FACILITIES_OPTIONS = [
   },
   {
     icon: <LocalParking fontSize="inherit" />,
-    label: "Parking",
+    label: "Parking area",
     value: PROPERTY_FACILITY.Parking,
   },
   {
@@ -35,7 +35,7 @@ export const PROPERTY_FACILITIES_OPTIONS = [
   },
   {
     icon: <SmokingRooms fontSize="inherit" />,
-    label: "Smoking",
+    label: "Smoking area",
     value: PROPERTY_FACILITY.Smoking,
   },
 ];
@@ -99,4 +99,12 @@ export const DEFAULT_PAGINATED_METADATA: PaginatedMetadata = {
   total: 0,
   pages: 0,
   page: 0
+}
+
+export const PROPERTY_TYPE_NAME = {
+  [PROPERTY_TYPE.Apartment]: 'Apartment',
+  [PROPERTY_TYPE.House]: 'Private house',
+  [PROPERTY_TYPE.Hotel]: 'Hotel',
+  [PROPERTY_TYPE.Commercial]: 'Commercial building',
+  [PROPERTY_TYPE.Garage]: 'Garage'
 }
