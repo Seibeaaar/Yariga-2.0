@@ -1,9 +1,10 @@
 import { Profile, USER_ROLE } from "@/types/profile";
+import { PropertyOwner } from "@/types/property";
 
-export const getFullName = (profile: Profile) =>
+export const getFullName = (profile: Profile | PropertyOwner) =>
   `${profile.firstName} ${profile.lastName}`;
 
-export const getInitials = (profile: Profile) =>
+export const getInitials = (profile: Profile | PropertyOwner) =>
   `${profile.firstName[0]}${profile.lastName[0]}`;
 
 export const getRoleTitle = (profile: Profile) => {

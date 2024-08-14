@@ -21,4 +21,9 @@ export const ONBOARDING_ROLE_OPTIONS: OnboardingRoleOption[] = [
   },
 ];
 
+export const ROLE_NAME_BY_TYPE = {
+  [USER_ROLE.Landlord] : 'Landlord',
+  [USER_ROLE.Tenant]: 'Tenant'
+}
+
 export const ACCEPTED_AVATAR_FORMATS = ["png", "jpeg", "jpg", "webp"];

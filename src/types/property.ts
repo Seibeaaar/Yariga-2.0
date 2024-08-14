@@ -64,6 +64,14 @@ export enum BED_LIMIT {
   Max = 2000,
 }
 
+export type PropertyOwner = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  properties: string[];
+  profilePicture?: string;
+}
+
 export type PropertyFilters = {
   topPrice?: number;
   bottomPrice?: number;
@@ -98,6 +106,7 @@ export type PropertyData = {
   photos: string[];
   rating: number;
   votes: number;
+  owner: PropertyOwner;
 };
 
 export type UpdatePropertyPayload = {
